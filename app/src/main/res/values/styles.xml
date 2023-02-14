@@ -1,0 +1,113 @@
+<!--
+      Copyright 2023 Curity AB
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+    -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:windowBackground">@color/primary_dark</item>
+    </style>
+
+<!--    <style name="LabelTextViewStyle" parent="android:Widget.TextView" tools:ignore="UnusedResources">-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--    </style>-->
+
+<!--    <style name="ErrorTextViewStyle" parent="android:Widget.TextView" tools:ignore="UnusedResources">-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--        <item name="android:textColor">@color/error</item>-->
+<!--    </style>-->
+
+<!--    Text Appearance for buttons-->
+    <style name="TextAppearance.ProgressButton.Primary" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="TextAppearance.Section" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Header" parent="@style/TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/text_headings</item>
+    </style>
+
+<!--    end-->
+
+    <style name="TextAppearance.Title" parent="@style/TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="TextAppearance.Body" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+    </style>
+
+<!--    <style name="TextAppearance.Body.Black" parent="TextAppearance.Body">-->
+<!--        <item name="android:textColor">@android:color/black</item>-->
+<!--    </style>-->
+
+<!--    <style name="TextAppearance.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">-->
+<!--    </style>-->
+
+    <style name="TextAppearance.TitleHeader" parent="@style/TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="TextAppearance.Code18" parent="">
+        <item name="fontFamily">@font/ibm_plex_mono_regular</item>
+        <item name="android:textColor">@color/spot_green</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Code14" parent="TextAppearance.Code18">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.BodyMedium" parent="TextAppearance.Body">
+        <item name="fontFamily">@font/ibm_plex_mono_medium</item>
+    </style>
+
+    <style name="KeyValueView.Key" parent="TextAppearance.Code18">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/info</item>
+    </style>
+
+    <style name="KeyValueView.Value.String" parent="TextAppearance.Code18">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/warning</item>
+    </style>
+
+    <style name="KeyValueView.Value.Other" parent="TextAppearance.Code18">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/spot_green</item>
+    </style>
+
+<!--  HAAPI  UI SDK  styles -->
+    <style name="Theme.Haapi.UI.Widget.Activity.Modal.Custom" parent="Theme.Haapi.Ui.Widget.Activity.Modal">
+
+    </style>
+
+    <style name="Haapi.Android.Ui.Widget.HeaderView" parent="">
+        <item name="android:src" />
+    </style>
+</resources>

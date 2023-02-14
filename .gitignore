@@ -1,0 +1,12 @@
+.DS_Store
+license.json
+output.txt
+resources/
+*.p12
+*.pem
+*.key
+*.bks
+*.jar
+local.properties
+deployment/
+.gradle

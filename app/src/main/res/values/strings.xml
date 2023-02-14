@@ -1,0 +1,46 @@
+<!--
+      Copyright 2023 Curity AB
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+    -->
+<resources>
+    <string name="app_name">HAAPI UI SDK demo</string>
+<!--    Home-->
+    <string name="title_home">Curity Demo App</string>
+    <string name="description_home">Welcome to the Curity Android Hypermedia Authentication API (HAAPI) demo app.</string>
+    <string name="button_home">Start authentication</string>
+
+<!--    Authenticated view -->
+    <string name="success">You\'re now authenticated</string>
+    <string name="access_token">Access token</string>
+    <string name="id_token">ID Token</string>
+    <string name="refresh_token">Refresh token</string>
+    <string name="user_info">User info response</string>
+    <string name="sign_out">Sign out</string>
+    <string name="decoded_jwt_header">Header</string>
+    <string name="decoded_jwt_payload">Payload</string>
+    <string name="decoded_jwt_open_brace">\u007B</string>
+    <string name="decoded_jwt_close_brace">\u007D</string>
+    <string name="copy_to_clipboard_message">Copied to clipboard</string>
+    <string name="copy_to_clipboard_label">Copied from Curity Demo App</string>
+
+<!--    Content descriptions-->
+    <string name="logo_content_description">A header logo</string>
+    <string name="start_auth_content_description">A Curity illustration for starting the authentication</string>
+    <string name="progress_btn_content_description">An image that illustrates the progress button</string>
+    <string name="copy_idtoken_clipboard_content_description">Button to copy ID Token value to clipboard</string>
+
+<!--    Debug-->
+    <string name="tools_default_button_text">A button text</string>
+
+</resources>
