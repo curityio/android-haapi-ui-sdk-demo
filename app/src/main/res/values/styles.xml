@@ -19,15 +19,6 @@
         <item name="android:windowBackground">@color/primary_dark</item>
     </style>
 
-<!--    <style name="LabelTextViewStyle" parent="android:Widget.TextView" tools:ignore="UnusedResources">-->
-<!--        <item name="android:textSize">14sp</item>-->
-<!--    </style>-->
-
-<!--    <style name="ErrorTextViewStyle" parent="android:Widget.TextView" tools:ignore="UnusedResources">-->
-<!--        <item name="android:textSize">14sp</item>-->
-<!--        <item name="android:textColor">@color/error</item>-->
-<!--    </style>-->
-
 <!--    Text Appearance for buttons-->
     <style name="TextAppearance.ProgressButton.Primary" parent="@style/TextAppearance.MaterialComponents.Body1">
         <item name="android:textStyle">normal</item>
@@ -59,13 +50,6 @@
         <item name="android:textAlignment">viewStart</item>
         <item name="android:lineSpacingExtra">5sp</item>
     </style>
-
-<!--    <style name="TextAppearance.Body.Black" parent="TextAppearance.Body">-->
-<!--        <item name="android:textColor">@android:color/black</item>-->
-<!--    </style>-->
-
-<!--    <style name="TextAppearance.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">-->
-<!--    </style>-->
 
     <style name="TextAppearance.TitleHeader" parent="@style/TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/text</item>
@@ -104,10 +88,17 @@
 
 <!--  HAAPI  UI SDK  styles -->
     <style name="Theme.Haapi.UI.Widget.Activity.Modal.Custom" parent="Theme.Haapi.Ui.Widget.Activity.Modal">
+        <item name="android:windowBackground">@color/primary_dark</item>
+        <item name="huiHaapiFlowActivityBackground">@color/primary_dark</item>
+        <item name="huiHaapiFlowActivityBarBackgroundColor">@color/light_yellow</item>
+    </style>
 
+    <style name="TextAppearance.Haapi.Android.Ui.Widget.LinkView" parent="">
+        <item name="android:textColor">@color/secondary</item>
     </style>
 
     <style name="Haapi.Android.Ui.Widget.HeaderView" parent="">
-        <item name="android:src" />
+        <item name="android:src" >@drawable/example_logo</item>
     </style>
+
 </resources>

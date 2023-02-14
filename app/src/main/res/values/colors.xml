@@ -15,34 +15,19 @@
       limitations under the License.
     -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="button_border" tools:ignore="UnusedResources">#DADADA</color>
-    <color name="button_text" tools:ignore="UnusedResources">#FFFFFF</color>
-    <color name="error">#CA2E2B</color>
-    <color name="form_labels" tools:ignore="UnusedResources">#333333</color>
+    <color name="primary">#BA2CA8</color>
+    <color name="secondary">#FC9033</color>
+
     <color name="grey">#C6C6C6</color>
-    <color name="grey_light" tools:ignore="UnusedResources">#DADADA</color>
-    <color name="grey_placeholder" tools:ignore="UnusedResources">#B3B3B3</color>
+    <color name="light_yellow">#FBF9DE</color>
     <color name="info" tools:ignore="UnusedResources">#70BBE1</color>
-    <color name="links" tools:ignore="UnusedResources">#D55BA0</color>
-    <color name="primary">#646E85</color>
-    <color name="primary_dark">#FFFFFF</color>
-    <color name="primary_medium">#FFFFFF</color>
-    <color name="secondary_action">#FFFFFF</color>
+    <color name="primary_dark">#F3ECEC</color>
     <color name="spot_green">#4AA69E</color>
-    <color name="spot_magenta">#D55BA0</color>
-    <color name="spot_yellow" tools:ignore="UnusedResources">#ECE668</color>
-    <color name="success" tools:ignore="UnusedResources">#4CAF50</color>
     <color name="text">#333333</color>
     <color name="text_headings">#111111</color>
-    <color name="text_paragraphs" tools:ignore="UnusedResources">#333333</color>
     <color name="warning" tools:ignore="UnusedResources">#E0C01C</color>
 
-<!--  MessageView color  -->
-    <color name="error_text_color">#CA2E2B</color>
-    <color name="warning_text_color">#E0C01C</color>
-    <color name="info_text_color">#70BBE1</color>
-
-    <color name="error_background">#14CA2E2B</color>
-    <color name="warning_background">#14E0C01C</color>
-    <color name="info_background">#1470BBE1</color>
+    <!--  HAAPI colors -->
+    <color name="hui_button_background_primary">@color/primary</color>
+    <color name="hui_button_background_secondary">@color/secondary</color>
 </resources>

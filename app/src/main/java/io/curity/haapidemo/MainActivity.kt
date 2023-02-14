@@ -31,17 +31,19 @@ import se.curity.identityserver.haapi.android.ui.widget.models.OauthModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var launchActivity: ActivityResultLauncher<Intent>
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // Set these to `true` if you want the HAAPI SDK to log raw JSON responses.
-         HaapiLogger.enabled = false
+        HaapiLogger.enabled = false
         HaapiLogger.isDebugEnabled = false
 
         launchActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {
                 val tokenResponse = it.data?.getParcelableExtra(HaapiFlowActivity.className) as OauthModel.Token?
                 val userInfoURI = (application as DemoApplication).configuration.userInfoURI
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onStartAuthorizationClick(view: View) {
+        binding.button.setLoading(true)
         launchActivity.launch(HaapiFlowActivity.newIntent(this))
     }
 }

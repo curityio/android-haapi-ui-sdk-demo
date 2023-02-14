@@ -34,6 +34,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
 //                urlConnection.connectTimeout = 8000
 //                    urlConnection.disableSslTrustVerification() as HttpURLConnection
 //            }
+
             .build()
     }
     override val widgetConfiguration: WidgetConfiguration
