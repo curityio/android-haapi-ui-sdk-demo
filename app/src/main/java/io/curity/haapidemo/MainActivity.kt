@@ -30,7 +30,7 @@ import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowActivity
 import se.curity.identityserver.haapi.android.ui.widget.models.OauthModel
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var launchActivity: ActivityResultLauncher<Intent>
+    private lateinit var haapiFlowLauncher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         HaapiLogger.enabled = false
         HaapiLogger.isDebugEnabled = false
 
-        launchActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        haapiFlowLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {
                 val tokenResponse = it.data?.getParcelableExtra(HaapiFlowActivity.className) as OauthModel.Token?
@@ -55,6 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     fun onStartAuthorizationClick(view: View) {
         binding.button.setLoading(true)
-        launchActivity.launch(HaapiFlowActivity.newIntent(this))
+        haapiFlowLauncher.launch(HaapiFlowActivity.newIntent(this))
     }
 }

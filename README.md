@@ -1,21 +1,20 @@
-# Demo Android application which uses HAAPI
+# Demo Android Application with HAAPI UI SDK Integration
 
 [![Quality](https://img.shields.io/badge/quality-demo-red)](https://curity.io/resources/code-examples/status/)
 [![Availability](https://img.shields.io/badge/availability-source-blue)](https://curity.io/resources/code-examples/status/)
 
-This is an example Android app which uses the Curity Identity Server's Hypermedia API to perform an
-OAuth2 flow with authentication done completely from the app, without the need of an external browser.
+This is an example Android app that uses the Curity Identity Server's Hypermedia API to perform an OIDC flow. The authentication is done within the app, usually without the need for an external browser (depends on the authentication methods used).
 
-Note: The app needs at least Android 8.0 (*Oreo*, API level 26) to properly use the attestation features.
-You will need the Curity Identity Server at least in version 5.4. to work with this app.
+Note: The app needs at least Android 8.0 (*Oreo*, API level 26) to utilize attestation features.
 
 ## Code Organization
 
-The code in this app is separated into a few packages under the `io.curity.haapidemo` namespace:
-- `authentication`, `uicomponents`, as well as the `DemoApplication` and `Configuration` classes contain all the code that shows integration with the HAAPI UI SDK.
-- `authenticated` contains all the activities and components used once the user is authenticated. This is used to display the obtained tokens. The `authenticated/TokensFragment` class also shows a way of utilising the SDK to refresh an access token.
-- The `settings` package contains the activity, views and components used to control the settings from the app. It allows changing e.g. the authorization server's endpoints at runtime.
+This is a trivial app that only authenticates the user, then displays the tokens obtained from the authorization server. Some classes worth checking out:
 
+- The `Configuration` class contains all the configuration options. You should tailor these to reflect your installation of the Curity Identity Server.
+- The `DemoApplication` class shows how to configure the HAAPI UI SDK so that it can be used with the app.
+- The `MainActivity` class shows the code needed to integrate with the HAAPI UI SDK. First, the `haapiFlowLauncher` is created together with the callback that will handle the received tokens. Then a listener is used to launch the HAAPI flow activity when a button is clicked.
+- The `authenticated` package contains the activity and components used once the user is authenticated. This displays the received tokens and obtains information about the user from the user info endpoint. The `authenticated/TokensFragment` class also shows a way of utilising the HAAPI SDK to refresh an access token.
 
 ## Getting started
 
@@ -24,9 +23,9 @@ version set in `Preferences / Build,Execution,Deployment / Build Tools / Gradle 
 
 ### Docker Automated Setup
 
-The required Curity Identity Server setup and connectivity from devices can be automated via a bash script:
+The required Curity Identity Server setup is provided through a script. To run the setup, follow these steps:
 
-1. Copy a license.json file into the code example root folder.
+1. Copy a Curity Identity Server license file to `license.json` in the code example root folder.
 2. Run the `./start-idsvr.sh` script to deploy a preconfigured Curity Identity Server via Docker. 
 3. Build and run the mobile app from Android Studio using an emulator of your choice.
 4. There is a preconfigured user account you can sign-in with: demouser / Password1. Feel free to create additional accounts.
@@ -38,95 +37,43 @@ ngrok tool for that. Edit the `USE_NGROK` variable in `start-server.sh` and `sto
 This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial further describes
 this option.
 
-### Setting up with Your Own Instance of the Curity Identity Server
-
-You can install and run your own instance of the Curity Identity Server by following this tutorial: https://curity.io/resources/getting-started/ 
-
-Once installed you can easily configure the server by uploading the provided configuration file.
-❗️When applying the provided configuration to your identity server, you will be able to run directly the demo application on the emulator. 
-
-To upload the configuration, follow these steps:
-1. Login to the admin UI (https://localhost:6749/admin if you're using defaults).
-2. Upload `curity-android-config.xml` through the **Changes**->**Upload** menu at the top. (Make sure to use the `Merge` option)
-3. Commit changes through the **Changes**->**Commit** menu.
-
-## Testing the demo app against your identity server
+## Running the App
 
 ### Emulator
 
 1. Make sure that the Curity Identity Server is running and configured.
-2. Start the demo application on an emulator that has Android API level equal to or larger than 26.
-3. Tap the button `Start Authentication`.
+2. Start the demo application on an emulator that has at least Android API level 26.
+3. Tap the button `Start Authentication` on the home screen to start the authentication flow.
 
-### Physical device (API level >= 26)
+### Physical Device (API level >= 26)
 
-1. Make sure that the Curity Identity Server is running and configured to be reachable on the Internet (e.g. by using [ngrok](https://curity.io/resources/learn/expose-local-curity-ngrok/)).
-2. Start the demo application on your physical device.
-4. Tap Settings in the tab navigation bar of the app.
-5. Edit a configuration to target your instance of the Curity Identity Server. If you are using `curity-android-config.xml`,
-   you need to replace https://10.0.2.2:8443 with the identity server URL.
-6. Tap `Home` in the tab navigation.
-7. Tap the button `Start Authentication`.
+1. Make sure that the Curity Identity Server is running and reachable on the Internet (e.g., by using [ngrok](https://curity.io/resources/learn/expose-local-curity-ngrok/)).
+2. Adjust the settings in the `Configuration` class to reflect the instance of your Curity Identity Server.
+3. Build then install and start the demo application on your physical device.
+4. Tap the button `Start Authentication` on the home screen to start the authentication flow.
 
-## How to get the API Signature ?
+## How to get the App Signature?
 
-Use the signingReport task (`./gradlew SigningReport`) to get the app signature. You can copy the `SHA-256` signature and paste it in the signature field
-in the admin UI (on your client's settings page). If you want to paste the signature into an XML file, or use the CLI or RestConf API to add the signature,
+To allow HAAPI access, you need to add the app's signature digest to the client's configuration in the Curity Identity Server. This should be added in the `Attestation` section of the client's settings.
+
+To get the signature's digest use the `signingReport` task (`./gradlew SigningReport`). Then copy the `SHA-256` signature and paste it in the signature field
+in the admin UI. If you want to paste the signature into an XML file, or use the CLI or RestConf API to add the signature,
 then you need to use a base64 version of the signature hash. You can run this command to obtain the encoded signature:
 
 ```shell
 echo "<sha-256 signature from the signingReport>" | xxd -r -p | base64
 ```
 
-If you're running the demo app on a device with an API version >= API 28 (Android 9.0, Pie), then when 
-starting the application, in Logcat, you should the APK Signature printed in DEBUG mode.
-
-`2021-07-14 12:22:37.952 9631-9631/io.curity.haapidemo D/AppInfo: APK signatures $RESULT$`
-
 ## Configuring the App
 
-The application needs a few configuration options set to be able to call the instance of the Curity Identity Server.
-Default configuration is set to work with the dockerized version of the Curity Identity Server which
-is run with the `start-idsvr.sh` script. Should you need to make the app work with a different environment
-(e.g. you have your instance of the Curity Identity Server already working online), then you can adjust
-the configuration in two ways:
-
-1. You can edit the default settings in the `src/main/java/io/curity/haapidemo/Configuration.kt` file.
-   The default settings are returned by the static `newInstance` method, and this is the one that should
-   be modified.
-
-2. You can update settings directly in the running app. When on the home screen of the app you can tap
-   the settings icon. There you will be able to create and edit configuration profiles. You can then
-   switch the active profile to quickly test between different environments of the Curity Identity Server.
+The application needs a few configuration options set to be able to call the instance of the Curity Identity Server. Default configuration is set to work with the dockerized version of the Curity Identity Server which is run with the `start-idsvr.sh` script. Should you need to make the app work with a different environment (e.g., you have your own instance of the Curity Identity Server already working online), then you should adjust  the configuration. Edit the default settings in the `src/main/java/io/curity/haapidemo/Configuration.kt` file.  The default settings are returned by the static `newInstance` method, and this is the one that should be modified.
 
 ## Resources
 
-- [Introduction](https://curity.io/resources/learn/what-is-hypermedia-authentication-api/)
-  to the Hypermedia Authentication API.
-
-- [An article](https://curity.io/resources/learn/authentication-api-android-sdk)
-  showing how to properly configure the Curity Identity Server and a client to use the Hypermedia
-  API from an Android app.
-
-## Docker Automated Setup
-
-The above Curity Identity Server setup and connectivity from devices can be automated via a bash script:
-
-- Copy a license.json file into the code example root folder
-- Edit the `./start-idsvr.sh` script to use either a local Docker URL on an ngrok internet URL
-- Run the script to deploy a preconfigured Curity Identity Server via Docker
-- Build and run the mobile app from Android Studio
-- Sign in with the preconfigured user account `demouser / Password1`
-- Edit the `./stop-idsvr.sh` script to use matching ngrok settings to the start script
-- Run the script to free Docker resources
-
-The [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) article provides further details on this setup.
+- [HAAPI UI SDK Guide](https://curity.io/resources/learn/haapi-mobile-getting-started) that shows all the aspects of working with the Curity's HAAPI UI SDK.
+- [A tutorial](https://curity.io/resources/learn/authentication-api-android-sdk) that shows how to properly configure the Curity Identity Server and a client to use the Hypermedia API from an Android app.
+- [An article](https://curity.io/resources/learn/what-is-hypermedia-authentication-api/) that explains the Hypermedia Authentication API.
 
 ## More information
 
-For further details about this code example, see the [Tutorial Walkthrough](https://curity.io/resources/learn/kotlin-android-haapi/) on the Curity website.\
 Please visit [curity.io](https://curity.io/) for more information about the Curity Identity Server.
-
-
-feature/dev/IS-7263-haapi-representation-improvements
-integration/HSA-70-build-ui-sdk

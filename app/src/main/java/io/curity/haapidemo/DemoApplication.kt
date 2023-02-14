@@ -26,14 +26,14 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
                 )
             }
 
-//            Uncomment the following lines if you need to connect to an instance
-//            of the Curity Identity Server that uses self-signed certificates.
+//            Comment out the following lines if you have an instance of the Curity Identity Server with
+//            TLS certificates that the app can trust (e.g., when exposing the Curity Identity Server with ngrok — see README)
 
-//            .setHttpUrlConnectionProvider { url ->
-//                val urlConnection = url.openConnection()
-//                urlConnection.connectTimeout = 8000
-//                    urlConnection.disableSslTrustVerification() as HttpURLConnection
-//            }
+            .setHttpUrlConnectionProvider { url ->
+                val urlConnection = url.openConnection()
+                urlConnection.connectTimeout = 8000
+                    urlConnection.disableSslTrustVerification() as HttpURLConnection
+            }
 
             .build()
     }
