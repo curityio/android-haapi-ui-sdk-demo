@@ -38,10 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        // Set these to `true` if you want the HAAPI SDK to log raw JSON responses.
-        HaapiLogger.enabled = false
-        HaapiLogger.isDebugEnabled = false
-
         haapiFlowLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {

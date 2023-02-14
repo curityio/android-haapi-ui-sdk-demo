@@ -10,33 +10,43 @@ import java.net.URI
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
     private val haapiWidgetConfiguration = run {
-        println("Preparing config")
-
         val baseUri = URI(configuration.baseURLString)
-        WidgetConfiguration.Builder(
+        val builder = WidgetConfiguration.Builder(
             clientId = configuration.clientId,
             baseUri = baseUri,
             tokenEndpointUri = baseUri.resolve(configuration.tokenEndpointPath),
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
             appRedirect = configuration.redirectURI
         )
-            .setOauthAuthorizationParamsProvider {
-                WidgetConfiguration.OAuthAuthorizationParams(
-                    scope = configuration.scope
-                )
-            }
+        .setOauthAuthorizationParamsProvider {
+            WidgetConfiguration.OAuthAuthorizationParams(
+                scope = configuration.scope
+            )
+        }
 
-//            Comment out the following lines if you have an instance of the Curity Identity Server with
-//            TLS certificates that the app can trust (e.g., when exposing the Curity Identity Server with ngrok — see README)
-
-            .setHttpUrlConnectionProvider { url ->
+        if (!configuration.useSSL) {
+            builder.setHttpUrlConnectionProvider { url ->
                 val urlConnection = url.openConnection()
                 urlConnection.connectTimeout = 8000
-                    urlConnection.disableSslTrustVerification() as HttpURLConnection
+                urlConnection.disableSslTrustVerification() as HttpURLConnection
             }
+        }
 
-            .build()
+        if (configuration.dcrTemplateClientId != null) {
+            builder
+                .setDcr(WidgetConfiguration.Dcr(
+                    templateClientId = configuration.dcrTemplateClientId!!,
+                    clientRegistrationEndpointUri = baseUri.resolve(configuration.dcrClientRegistrationEndpointPath),
+                    context = this
+                ))
+                .setClientAuthentiationMethod(
+                    WidgetConfiguration.ClientAuthenticationMethod.Secret(secret = configuration.deviceSecret!!)
+                )
+        }
+
+        builder.build()
     }
+
     override val widgetConfiguration: WidgetConfiguration
         get() = haapiWidgetConfiguration
 }

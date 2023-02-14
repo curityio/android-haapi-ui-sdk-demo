@@ -16,6 +16,8 @@
 
 package io.curity.haapidemo
 
+import se.curity.identityserver.haapi.android.driver.HaapiLogger
+
 /**
  * Configuration for `HaapiFlowManager`
  *
@@ -28,6 +30,8 @@ package io.curity.haapidemo
  * @property [redirectURI] A String that represents the redirect URI. This should match the setting for the client in the Curity Identity Server.
  * Since HAAPI does not actually use browser redirects, this can be any valid URI.
  * @property [scope] A list of strings that represents the scope requested from the authorization server.
+ * @property [useSSL] Set this to true if you have an instance of the Curity Identity Server with
+ * TLS certificates that the app can trust (e.g., when exposing the Curity Identity Server with ngrok — see README)
  */
 
 data class Configuration(
@@ -39,16 +43,22 @@ data class Configuration(
     var redirectURI: String,
     var isAutoAuthorizationChallengedEnabled: Boolean = true,
     var scope: List<String> = emptyList(),
+    val useSSL: Boolean,
 
     // To implement HAAPI fallback, customers must define their own DCR related settings
     // These will vary depending on the type of credential being used
     var dcrTemplateClientId: String? = null,
-    var dcrClientRegistrationEndpointUri: String? = null,
+    var dcrClientRegistrationEndpointPath: String? = null,
     var deviceSecret: String? = null
-
 ) {
 
     val userInfoURI = baseURLString + userInfoEndpointPath
+
+    init {
+        // Set these to `true` if you want the HAAPI SDK to log raw JSON responses.
+        HaapiLogger.enabled = false
+        HaapiLogger.isDebugEnabled = false
+    }
 
     companion object {
         fun newInstance(): Configuration =
@@ -60,11 +70,12 @@ data class Configuration(
                 userInfoEndpointPath = "/oauth/v2/oauth-userinfo",
                 redirectURI = "app://haapi",
                 scope = listOf("openid", "profile"),
+                useSSL = false,
 
                 // Uncomment these fields to add support for HAAPI DCR fallback with a simple credential
-                //dcrTemplateClientId = "haapi-template-client",
-                //dcrClientRegistrationEndpointUri = "https://10.0.2.2:8443/token-service/oauth-registration",
-                //deviceSecret = "Password1"
+//                dcrTemplateClientId = "haapi-template-client",
+//                dcrClientRegistrationEndpointPath = "/token-service/oauth-registration",
+//                deviceSecret = "Password1"
             )
     }
 }

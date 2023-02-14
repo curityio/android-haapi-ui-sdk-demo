@@ -34,6 +34,8 @@ The required Curity Identity Server setup is provided through a script. To run t
 By default the Curity Identity Server instance runs on the the Android emulator's default host IP. 
 If you prefer to expose the Server on the Internet (e.g. to test with a real device), you can use the 
 ngrok tool for that. Edit the `USE_NGROK` variable in `start-server.sh` and `stop-server.sh` scripts.
+Then change the configuration setting `useSSL` to true, as ngrok provides trusted certificates for the connection.
+
 This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial further describes
 this option.
 
