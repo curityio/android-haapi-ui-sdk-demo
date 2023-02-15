@@ -14,12 +14,13 @@
       See the License for the specific language governing permissions and
       limitations under the License.
     -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners
-        android:topLeftRadius="@dimen/cornerRadius"
-        android:topRightRadius="@dimen/cornerRadius"
-        android:bottomRightRadius="@dimen/cornerRadius"
-        android:bottomLeftRadius="@dimen/cornerRadius"
-        />
-    <solid android:color="@color/primary"/>
-</shape>
+<resources>
+    <declare-styleable name="ProgressButton">
+        <attr name="background"/>
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="DisclosureView">
+        <attr name="titleText" format="string" />
+    </declare-styleable>
+</resources>
