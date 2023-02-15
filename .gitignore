@@ -9,4 +9,4 @@ resources/
 *.jar
 local.properties
 deployment/
-.gradle
+/.gradle/
