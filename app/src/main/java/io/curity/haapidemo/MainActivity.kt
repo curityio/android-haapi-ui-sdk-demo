@@ -25,7 +25,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import io.curity.haapidemo.authenticated.AuthenticatedActivity
 import io.curity.haapidemo.databinding.ActivityMainBinding
-import se.curity.identityserver.haapi.android.driver.HaapiLogger
 import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowActivity
 import se.curity.identityserver.haapi.android.ui.widget.models.OauthModel
 

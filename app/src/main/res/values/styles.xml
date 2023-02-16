@@ -88,7 +88,6 @@
 
 <!--  HAAPI  UI SDK  styles -->
     <style name="Theme.Haapi.UI.Widget.Activity.Modal.Custom" parent="Theme.Haapi.Ui.Widget.Activity.Modal">
-        <item name="android:windowBackground">@color/primary_dark</item>
         <item name="huiHaapiFlowActivityBackground">@color/primary_dark</item>
         <item name="huiHaapiFlowActivityBarBackgroundColor">@color/light_yellow</item>
     </style>

@@ -70,6 +70,11 @@ echo "<sha-256 signature from the signingReport>" | xxd -r -p | base64
 
 The application needs a few configuration options set to be able to call the instance of the Curity Identity Server. Default configuration is set to work with the dockerized version of the Curity Identity Server which is run with the `start-idsvr.sh` script. Should you need to make the app work with a different environment (e.g., you have your own instance of the Curity Identity Server already working online), then you should adjust  the configuration. Edit the default settings in the `src/main/java/io/curity/haapidemo/Configuration.kt` file.  The default settings are returned by the static `newInstance` method, and this is the one that should be modified.
 
+## Customizing the Look and Feel
+
+The UI SDK allows for a simple change of the styles used by the view components. Have a look at the `res/values/styles.xml` and `res/values/colors.xml` files to see the techniques used in the demo app to change the default theme. Note that the custom theme is applied to the `HAAPIFlowActivity` in the `AndroidManifest.xml` file. Have a look at [the customization tutorial](https://curity.io/resources/learn/haapi-mobile-customization) to learn more about changing the look and feel of your authentication flow.
+
+
 ## Resources
 
 - [HAAPI UI SDK Guide](https://curity.io/resources/learn/haapi-mobile-getting-started) that shows all the aspects of working with the Curity's HAAPI UI SDK.
