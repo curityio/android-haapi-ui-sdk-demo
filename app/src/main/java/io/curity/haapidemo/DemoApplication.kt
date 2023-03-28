@@ -39,7 +39,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
                     clientRegistrationEndpointUri = baseUri.resolve(configuration.dcrClientRegistrationEndpointPath),
                     context = this
                 ))
-                .setClientAuthentiationMethod(
+                .setClientAuthenticationMethod(
                     WidgetConfiguration.ClientAuthenticationMethod.Secret(secret = configuration.deviceSecret!!)
                 )
         }
