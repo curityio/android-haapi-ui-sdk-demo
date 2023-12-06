@@ -4,6 +4,6 @@
 # Free deployment resources when finished with the code example
 ###############################################################
 
-USE_NGROK=false
-EXAMPLE_NAME='haapi'
-./deployment/stop.sh "$USE_NGROK" "$EXAMPLE_NAME"
+export EXAMPLE_NAME='haapi'
+export USE_NGROK=false
+./deployment/stop.sh
