@@ -39,7 +39,6 @@ import java.net.HttpURLConnection
 import java.net.URI
 import io.curity.haapidemo.databinding.FragmentTokensBinding
 import io.curity.haapidemo.uicomponents.ProgressButton
-import kotlinx.android.synthetic.main.disclosure_view.view.*
 import org.json.JSONObject
 import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowViewModel
 import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowViewModelFactory

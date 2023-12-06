@@ -28,16 +28,14 @@ The required Curity Identity Server setup is provided through a script. To run t
 1. Copy a Curity Identity Server license file to `license.json` in the code example root folder.
 2. Run the `./start-idsvr.sh` script to deploy a preconfigured Curity Identity Server via Docker. 
 3. Build and run the mobile app from Android Studio using an emulator of your choice.
-4. There is a preconfigured user account you can sign-in with: demouser / Password1. Feel free to create additional accounts.
+4. There is a preconfigured `demouser` user account you can sign-in with using a password of `Password1`.
 5. Run the `./stop-idsvr.sh` script to free Docker resources.
 
 By default the Curity Identity Server instance runs on the the Android emulator's default host IP. 
 If you prefer to expose the Server on the Internet (e.g. to test with a real device), you can use the 
 ngrok tool for that. Edit the `USE_NGROK` variable in `start-server.sh` and `stop-server.sh` scripts.
 Then change the configuration setting `useSSL` to true, as ngrok provides trusted certificates for the connection.
-
-This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial further describes
-this option.
+This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial further describes the NGROK setup.
 
 ## Running the App
 
@@ -73,7 +71,6 @@ The application needs a few configuration options set to be able to call the ins
 ## Customizing the Look and Feel
 
 The UI SDK allows for a simple change of the styles used by the view components. Have a look at the `res/values/styles.xml` and `res/values/colors.xml` files to see the techniques used in the demo app to change the default theme. Note that the custom theme is applied to the `HAAPIFlowActivity` in the `AndroidManifest.xml` file. Have a look at [the customization tutorial](https://curity.io/resources/learn/haapi-mobile-customization) to learn more about changing the look and feel of your authentication flow.
-
 
 ## Resources
 

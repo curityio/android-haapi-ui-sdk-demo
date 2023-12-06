@@ -14,26 +14,20 @@
  *  limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = "1.7.20"
+pluginManagement {
     repositories {
         google()
         mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        gradlePluginPortal()
     }
 }
-
-allprojects {
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+rootProject.name = "HAAPI UI SDK Demo"
+include(":app")
