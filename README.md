@@ -18,7 +18,7 @@ This is a trivial app that only authenticates the user, then displays the tokens
 
 ## Getting started
 
-Note that gradle tasks require at least Java 11 to run properly. Make sure to have the proper Java SDK
+Note that gradle tasks require at least Java 17 to run properly. Make sure to have the proper Java SDK
 version set in `Preferences / Build,Execution,Deployment / Build Tools / Gradle / Gradle JDK` in Android Studio.
 
 ### Docker Automated Setup
@@ -32,10 +32,10 @@ The required Curity Identity Server setup is provided through a script. To run t
 5. Run the `./stop-idsvr.sh` script to free Docker resources.
 
 By default the Curity Identity Server instance runs on the the Android emulator's default host IP. 
-If you prefer to expose the Server on the Internet (e.g. to test with a real device), you can use the 
-ngrok tool for that. Edit the `USE_NGROK` variable in `start-server.sh` and `stop-server.sh` scripts.
-Then change the configuration setting `useSSL` to true, as ngrok provides trusted certificates for the connection.
-This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial further describes the NGROK setup.
+
+### Passkey Logins
+
+To login with native passkeys you must configure associated domains for the app, according to the [Configure Native Passkeys for Mobile Logins](https://curity.io/resources/learn/mobile-logins-using-native-passkeys/) tutorial. The Docker automated setup provides working passkey logins if you install the ngrok tool as described in the [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutorial, then set the `USE_NGROK=true` variable at the top of the `start-server.sh` script, before running it. Using ngrok exposes the docker instance of the Curity Identity Server on the internet at a trusted SSL URL, so that associated domain registration works. Using ngrok also enables testing with real devices.
 
 ## Running the App
 
@@ -54,11 +54,7 @@ This [Mobile Setup](https://curity.io/resources/learn/mobile-setup-ngrok/) tutor
 
 ## How to get the App Signature?
 
-To allow HAAPI access, you need to add the app's signature digest to the client's configuration in the Curity Identity Server. This should be added in the `Attestation` section of the client's settings.
-
-To get the signature's digest use the `signingReport` task (`./gradlew SigningReport`). Then copy the `SHA-256` signature and paste it in the signature field
-in the admin UI. If you want to paste the signature into an XML file, or use the CLI or RestConf API to add the signature,
-then you need to use a base64 version of the signature hash. You can run this command to obtain the encoded signature:
+To allow HAAPI access, you need to add the app's signature digest to the client's configuration in the Curity Identity Server. This should be added in the `Attestation` section of the client's settings. To get the signature's digest use the `signingReport` task (`./gradlew SigningReport`). Then copy the `SHA-256` signature and paste it in the signature field in the admin UI. If you want to paste the signature into an XML file, or use the CLI or RestConf API to add the signature, then you need to use a base64 version of the signature hash. You can run this command to obtain the encoded signature:
 
 ```shell
 echo "<sha-256 signature from the signingReport>" | xxd -r -p | base64
