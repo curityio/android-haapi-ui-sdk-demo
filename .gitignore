@@ -2,6 +2,7 @@
 license.json
 output.txt
 resources/
+.idea
 *.p12
 *.pem
 *.key
