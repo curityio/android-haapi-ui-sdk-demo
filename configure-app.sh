@@ -6,7 +6,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-BASE_URL='https://localhost:8443'
+BASE_URL='https://10.0.2.2:8443'
 
 #
 # Update URLs referenced in the code example to match NGROK
