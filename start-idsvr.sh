@@ -18,9 +18,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # By default the Curity Identity Server will use the Android emulator's default host IP.
 # Set USE_NGROK to true and a dynamic NGROK base URL will be used automatically.
 #
-export USE_NGROK='true'
-export BASE_URL='https://10.0.2.2:8443'
-export EXAMPLE_NAME='haapi'
+USE_NGROK='true'
+BASE_URL='https://10.0.2.2:8443'
+EXAMPLE_NAME='haapi'
 
 #
 # First check prerequisites
