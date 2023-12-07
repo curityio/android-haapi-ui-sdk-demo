@@ -27,11 +27,12 @@ function replaceTextInFile() {
 RUNTIME_BASE_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[] | select(.proto == "https") | .public_url')
 if [ $RUNTIME_BASE_URL != '' ]; then
 
+  BASE_URL=${BASE_URL//\//\\/}
   RUNTIME_BASE_URL=${RUNTIME_BASE_URL//\//\\/}
   
   # Override the configuration URL to enable internet connectivity from any device
-  replaceTextInFile $DEFAULT_URL $RUNTIME_BASE_URL './app/src/main/java/io/curity/haapidemo/Configuration.kt'
+  replaceTextInFile $BASE_URL $RUNTIME_BASE_URL './app/src/main/java/io/curity/haapidemo/Configuration.kt'
   
   # Override the asset statements URL to enable passkeys to work
-  replaceTextInFile $DEFAULT_URL $RUNTIME_BASE_URL './app/src/main/res/values/strings.xml'
+  replaceTextInFile $BASE_URL $RUNTIME_BASE_URL './app/src/main/res/values/strings.xml'
 fi
