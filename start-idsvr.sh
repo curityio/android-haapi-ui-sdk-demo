@@ -64,24 +64,11 @@ RUNTIME_BASE_URL="$(cat ./deployment/output.txt)"
 echo "Curity Identity Server is running at $RUNTIME_BASE_URL"
 
 #
-# Update URLs referenced in the code example to match NGROK
+# If using ngrok, configure more advanced settings
 #
-function replaceTextInFile() {
-
-  FROM="$1"
-  TO="$2"
-  FILE="$3"
-  
-  if [ "$(uname -s)" == 'Darwin' ]; then
-    sed -i '' "s/$FROM/$TO/g" "$FILE"
-  else
-    sed -i -e "s/$FROM/$TO/g" "$FILE"
-  fi
-}
-
 if [ "$USE_NGROK" == 'true' ]; then
-  DEFAULT_URL=${BASE_URL//\//\\/}
-  RUNTIME_BASE_URL=${RUNTIME_BASE_URL//\//\\/}
-  replaceTextInFile $DEFAULT_URL $RUNTIME_BASE_URL './app/src/main/java/io/curity/haapidemo/Configuration.kt'
-  replaceTextInFile $DEFAULT_URL $RUNTIME_BASE_URL './app/src/main/res/values/strings.xml'
+  ./configure-app.sh
+  if [ $? -ne 0 ]; then
+    exit 1
+  fi
 fi
