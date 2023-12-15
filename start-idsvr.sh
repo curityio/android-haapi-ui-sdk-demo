@@ -23,6 +23,12 @@ BASE_URL='https://10.0.2.2:8443'
 EXAMPLE_NAME='haapi'
 
 #
+# It is possible to deploy the Curity Identity Server for Android, then also run the iOS app
+# By setting you Apple Team ID here, passkeys associated domains will be configured correctly for both
+#
+export APPLE_TEAM_ID='MYTEAMID'
+
+#
 # First check prerequisites
 #
 if [ ! -f './license.json' ]; then
