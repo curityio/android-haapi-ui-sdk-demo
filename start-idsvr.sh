@@ -24,9 +24,10 @@ EXAMPLE_NAME='haapi'
 
 #
 # It is possible to deploy the Curity Identity Server for Android, then also run the iOS app
-# By setting you Apple Team ID here, passkeys associated domains will be configured correctly for both
+# By setting your Apple Team ID here, passkeys associated domains will be configured correctly for both
 #
 export APPLE_TEAM_ID='MYTEAMID'
+export APPLE_APP_ID='io.curity.haapidemo'
 
 #
 # First check prerequisites
