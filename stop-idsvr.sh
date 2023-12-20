@@ -18,13 +18,6 @@ if [ $? -ne 0 ]; then
 fi
 
 #
-# TODO: delete after merge
-#
-cd deployment
-git checkout feature/passkeys
-cd ..
-
-#
 # Do the teardown
 #
 ./deployment/stop.sh "$USE_NGROK" "$EXAMPLE_NAME"
