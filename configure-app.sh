@@ -1,8 +1,8 @@
 #!/bin/bash
 
-####################################################
-# When using ngrok, this makes configuration updates
-####################################################
+##############################################################################
+# When using ngrok, this makes configuration updates to enable use of passkeys
+##############################################################################
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 

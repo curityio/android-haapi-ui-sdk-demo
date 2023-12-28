@@ -2,6 +2,7 @@ package io.curity.haapidemo
 
 import android.app.Application
 import io.curity.haapidemo.utils.disableSslTrustVerification
+import se.curity.identityserver.haapi.android.sdk.util.ExperimentalWebAuthnApi
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
 import java.net.HttpURLConnection
@@ -9,6 +10,8 @@ import java.net.URI
 
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
+
+    @OptIn(ExperimentalWebAuthnApi::class)
     private val haapiWidgetConfiguration = run {
         val baseUri = URI(configuration.baseURLString)
         val builder = WidgetConfiguration.Builder(
@@ -16,8 +19,9 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             baseUri = baseUri,
             tokenEndpointUri = baseUri.resolve(configuration.tokenEndpointPath),
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
-            appRedirect = configuration.redirectURI
+            appRedirect = configuration.redirectURI,
         )
+        .setUseNativeWebAuthnSupport(true)
         .setOauthAuthorizationParamsProvider {
             WidgetConfiguration.OAuthAuthorizationParams(
                 scope = configuration.scope
