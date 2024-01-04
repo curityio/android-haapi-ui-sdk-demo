@@ -31,7 +31,7 @@ The required Curity Identity Server setup is provided through a script. To run t
 4. There is a preconfigured `demouser` user account you can sign-in with using a password of `Password1`.
 5. Run the `./stop-idsvr.sh` script to free Docker resources.
 
-By default the Curity Identity Server instance runs on the the Android emulator's default host IP. 
+By default the Curity Identity Server instance is contacted from the Android emulator using the default host IP of `10.0.2.2`. 
 
 ### Passkey Logins
 
