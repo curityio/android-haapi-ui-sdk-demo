@@ -33,6 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="s">
+        <meta-data android:name="asset_statements" android:resource="@string/asset_statements"/>
         <activity
             android:name="se.curity.identityserver.haapi.android.ui.widget.HaapiFlowActivity"
             android:label="Authentication"
