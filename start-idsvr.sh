@@ -44,7 +44,7 @@ fi
 # TODO: delete after merging the mobile_deployments repo
 #
 cd deployment
-git checkout feature/activate_token_bound
+git checkout feature/activate-token-bound
 cd ..
 
 #
