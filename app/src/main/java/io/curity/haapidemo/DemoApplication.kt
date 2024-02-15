@@ -2,6 +2,9 @@ package io.curity.haapidemo
 
 import android.app.Application
 import io.curity.haapidemo.utils.disableSslTrustVerification
+import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
+import se.curity.identityserver.haapi.android.driver.Storage
+import se.curity.identityserver.haapi.android.driver.TokenBoundConfiguration
 import se.curity.identityserver.haapi.android.sdk.util.ExperimentalWebAuthnApi
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
@@ -10,6 +13,27 @@ import java.net.URI
 
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
+
+    private val tokenBoundConfiguration = TokenBoundConfiguration(
+        keyAlias = "tokenBoundKey",
+        keyPairAlgorithmConfig = KeyPairAlgorithmConfig.ES256,
+        storage = object : Storage {
+            override fun set(value: String, key: String) {
+            }
+
+            override fun get(key: String): String? {
+                return null
+            }
+
+            override fun delete(key: String) {
+            }
+
+            override fun getAll(): Map<String, String> {
+                return mapOf()
+            }
+        },
+        currentTimeMillisProvider = { System.currentTimeMillis() }
+    )
 
     @OptIn(ExperimentalWebAuthnApi::class)
     private val haapiWidgetConfiguration = run {
@@ -22,6 +46,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             appRedirect = configuration.redirectURI,
         )
         .setUseNativeWebAuthnSupport(true)
+        .setTokenBoundConfiguration(tokenBoundConfiguration)
         .setOauthAuthorizationParamsProvider {
             WidgetConfiguration.OAuthAuthorizationParams(
                 scope = configuration.scope
