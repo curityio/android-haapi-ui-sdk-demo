@@ -25,7 +25,6 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
             appRedirect = configuration.redirectURI,
         )
-        .setShouldAutoHandleFlowErrorFeedback(true)
         .setUseNativeWebAuthnSupport(true)
         .setTokenBoundConfiguration(createTokenBoundConfiguration())
         .setOauthAuthorizationParamsProvider {
