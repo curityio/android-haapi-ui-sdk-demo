@@ -18,6 +18,7 @@ package io.curity.haapidemo
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -40,10 +41,22 @@ class MainActivity : AppCompatActivity() {
         haapiFlowLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {
-                val tokenResponse = it.data?.getParcelableExtra(HaapiFlowActivity.className) as OauthModel.Token?
-                val userInfoURI = (application as DemoApplication).configuration.userInfoURI
-                val authenticatedActivity = AuthenticatedActivity.newIntent(this, userInfoURI, tokenResponse!!)
-                startActivity(authenticatedActivity)
+
+                val model = it.data?.getParcelableExtra(HaapiFlowActivity.className) as? OauthModel
+                if (model is OauthModel.Token) {
+
+                    val userInfoURI = (application as DemoApplication).configuration.userInfoURI
+                    val authenticatedActivity = AuthenticatedActivity.newIntent(this, userInfoURI, model)
+                    startActivity(authenticatedActivity)
+                }
+
+                if (model is OauthModel.Error) {
+                    Log.d("DEBUG", "Problem encountered: ${model.error},  ${model.errorDescription}")
+                }
+            }
+
+            if (it.resultCode == Activity.RESULT_CANCELED) {
+                Log.d("DEBUG", "GJA: User canceled the login attempt")
             }
         }
     }
