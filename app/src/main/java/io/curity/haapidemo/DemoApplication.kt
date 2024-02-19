@@ -14,15 +14,7 @@ import java.net.URI
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
 
-    /*
-     * This object is needed when protecting OAuth token requests with DPoP JWTs, which is recommended
-     * - By default only an authorization server provided DPoP nonce is stored
-     * - For devices that do not support attestation, this also stores an ephemeral key used to issue DPoP JWTs
-     *
-     * This implementation uses shared preferences, so that this data is available across application restarts
-     * A different type of storage can be used if preferred
-     */
-    @OptIn(ExperimentalWebAuthnApi::class)
+        @OptIn(ExperimentalWebAuthnApi::class)
     private val haapiWidgetConfiguration = run {
 
         val baseUri = URI(configuration.baseURLString)
@@ -68,7 +60,12 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
         get() = haapiWidgetConfiguration
 
     /*
-     * Required when using DPoP JWTs to protect requests for OAuth tokens at the token endpoint
+     * This object is required in order to use the recommended options to protect OAuth token requests with DPoP JWTs
+     * - By default only an authorization server provided DPoP nonce is stored
+     * - For devices that do not support attestation, this also stores an ephemeral key used to issue DPoP JWTs
+     *
+     * This implementation uses shared preferences, so that this data is available across application restarts
+     * A different type of storage can be used if preferred
      */
     private fun createTokenBoundConfiguration(): TokenBoundConfiguration {
 

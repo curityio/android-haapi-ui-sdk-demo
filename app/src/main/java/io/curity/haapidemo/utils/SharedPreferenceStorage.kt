@@ -6,7 +6,7 @@ import androidx.core.content.edit
 import se.curity.identityserver.haapi.android.driver.Storage
 
 /*
- * A utility store for temporary data used in token-bound flows
+ * A utility store for temporary DPoP related data when getting OAuth tokens from the token endpoint
  */
 class SharedPreferenceStorage(
     private val context: Context,
