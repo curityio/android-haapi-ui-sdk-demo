@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (it.resultCode == Activity.RESULT_CANCELED) {
-                Log.d("DEBUG", "GJA: User canceled the login attempt")
+                Log.d("DEBUG", "User canceled the login attempt")
             }
         }
     }
