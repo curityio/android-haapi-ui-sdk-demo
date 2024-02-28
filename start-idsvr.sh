@@ -41,13 +41,6 @@ if [ $? -ne 0 ]; then
 fi
 
 #
-# TODO: delete after merging the mobile_deployments repo
-#
-cd deployment
-git checkout feature/activate-token-bound
-cd ..
-
-#
 # Run an automated deployment of the Curity Identity Server
 #
 cp ./license.json deployment/resources/license.json
