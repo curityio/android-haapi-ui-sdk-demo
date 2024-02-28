@@ -19,11 +19,12 @@ This is a trivial app that only authenticates the user, then displays the tokens
 ## Getting started
 
 Note that gradle tasks require at least Java 17 to run properly. Make sure to have the proper Java SDK
-version set in `Preferences / Build,Execution,Deployment / Build Tools / Gradle / Gradle JDK` in Android Studio.
+configured in `Preferences / Build,Execution,Deployment / Build Tools / Gradle / Gradle JDK` in Android Studio.
 
 ### Docker Automated Setup
 
-The required Curity Identity Server setup is provided through a script. To run the setup, follow these steps:
+The required Curity Identity Server setup is provided through a script. To run the setup, follow these steps.\
+First run `docker pull curity.azurecr.io/curity/idsvr` to ensure that your Curity Identity Server instance is up to date.
 
 1. Copy a Curity Identity Server license file to `license.json` in the code example root folder.
 2. Run the `./start-idsvr.sh` script to deploy a preconfigured Curity Identity Server via Docker. 

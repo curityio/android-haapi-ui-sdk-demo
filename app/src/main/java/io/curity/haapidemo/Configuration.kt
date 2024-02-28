@@ -55,8 +55,7 @@ data class Configuration(
     val userInfoURI = baseURLString + userInfoEndpointPath
 
     init {
-        // Set these to `true` if you want the HAAPI SDK to log raw JSON responses.
-        HaapiLogger.enabled = false
+        HaapiLogger.enabled = true
         HaapiLogger.isDebugEnabled = false
     }
 
