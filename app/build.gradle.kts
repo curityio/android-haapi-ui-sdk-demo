@@ -70,17 +70,17 @@ android {
 }
 
 dependencies {
-    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.0.0")
+    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.2.0")
 
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    implementation("org.bitbucket.b_c:jose4j:0.9.3")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("org.bitbucket.b_c:jose4j:0.9.5")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
