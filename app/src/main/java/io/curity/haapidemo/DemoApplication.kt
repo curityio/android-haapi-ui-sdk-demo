@@ -25,12 +25,12 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
             appRedirect = configuration.redirectURI,
         )
-        .setUseNativeWebAuthnSupport(true)
-        .setTokenBoundConfiguration(createTokenBoundConfiguration())
-        .setOauthAuthorizationParamsProvider {
-            WidgetConfiguration.OAuthAuthorizationParams(
-                scope = configuration.scope
-            )
+            //.setUseNativeWebAuthnSupport(true)
+            .setTokenBoundConfiguration(createTokenBoundConfiguration())
+            .setOauthAuthorizationParamsProvider {
+                WidgetConfiguration.OAuthAuthorizationParams(
+                    scope = configuration.scope
+                )
         }
 
         if (!configuration.useSSL) {

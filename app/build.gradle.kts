@@ -21,13 +21,13 @@ plugins {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 35
     namespace = "io.curity.haapidemo"
 
     defaultConfig {
         applicationId = "io.curity.haapidemo"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -70,17 +70,25 @@ android {
 }
 
 dependencies {
-    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.0.0")
+    //implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.3.0")
 
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.driver/build/outputs/aar/identityserver.haapi.android.driver-debug.aar"))
+    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.sdk/build/outputs/aar/identityserver.haapi.android.sdk-debug.aar"))
+    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.ui.widget/build/outputs/aar/identityserver.haapi.android.ui.widget-debug.aar"))
 
-    implementation("org.bitbucket.b_c:jose4j:0.9.3")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.google.android.gms:play-services-fido:21.1.0")
+    implementation ("androidx.credentials:credentials:1.3.0")
+    implementation ("androidx.credentials:credentials-play-services-auth:1.3.0")
+
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.6")
+    implementation("androidx.datastore:datastore-preferences:1.1.2")
+
+    implementation("org.bitbucket.b_c:jose4j:0.9.4")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
