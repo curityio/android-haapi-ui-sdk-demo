@@ -18,7 +18,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # By default the Curity Identity Server will use the Android emulator's default host IP.
 # Set USE_NGROK to true and a dynamic NGROK base URL will be used automatically.
 #
-USE_NGROK='true'
+USE_NGROK='false'
 BASE_URL='https://10.0.2.2:8443'
 EXAMPLE_NAME='haapi'
 
@@ -39,6 +39,13 @@ if [ $? -ne 0 ]; then
   echo 'Problem encountered downloading deployment resources'
   exit 1
 fi
+
+#
+# TODO: delete after merge
+#
+cd deployment
+git checkout feature/sdk_update
+cd ..
 
 #
 # Run an automated deployment of the Curity Identity Server

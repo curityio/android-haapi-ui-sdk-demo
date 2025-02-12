@@ -21,13 +21,13 @@ plugins {
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 34
     namespace = "io.curity.haapidemo"
 
     defaultConfig {
         applicationId = "io.curity.haapidemo"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -70,12 +70,17 @@ android {
 }
 
 dependencies {
-    //implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.3.0")
+    //
+    // TODO: Uncomment this line once the 4.4 SDK is released 
+    //
+    //implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.4.0")
 
+    //
+    // TODO: Delete these 6 lines once the 4.4 SDK is released 
+    //
     implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.driver/build/outputs/aar/identityserver.haapi.android.driver-debug.aar"))
     implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.sdk/build/outputs/aar/identityserver.haapi.android.sdk-debug.aar"))
     implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.ui.widget/build/outputs/aar/identityserver.haapi.android.ui.widget-debug.aar"))
-
     implementation("com.google.android.gms:play-services-fido:21.1.0")
     implementation ("androidx.credentials:credentials:1.3.0")
     implementation ("androidx.credentials:credentials-play-services-auth:1.3.0")
@@ -89,6 +94,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.8.6")
     implementation("androidx.datastore:datastore-preferences:1.1.2")
 
-    implementation("org.bitbucket.b_c:jose4j:0.9.4")
+    implementation("org.bitbucket.b_c:jose4j:0.9.5")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

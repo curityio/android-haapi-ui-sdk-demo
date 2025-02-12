@@ -18,7 +18,7 @@ This is a trivial app that only authenticates the user, then displays the tokens
 
 ## Getting started
 
-Note that gradle tasks require at least Java 17 to run properly. Make sure to have the proper Java SDK
+Note that gradle tasks require at least Java 17 to run properly. Make sure to have the proper Java 17 SDK
 configured in `Preferences / Build,Execution,Deployment / Build Tools / Gradle / Gradle JDK` in Android Studio.
 
 ### Docker Automated Setup
