@@ -41,13 +41,6 @@ if [ $? -ne 0 ]; then
 fi
 
 #
-# TODO: delete after merge
-#
-cd deployment
-git checkout feature/sdk_update
-cd ..
-
-#
 # Run an automated deployment of the Curity Identity Server
 #
 cp ./license.json deployment/resources/license.json
