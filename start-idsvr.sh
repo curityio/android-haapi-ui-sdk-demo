@@ -40,6 +40,10 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+cd deployment
+git checkout feature/sdk_update
+cd ..
+
 #
 # Run an automated deployment of the Curity Identity Server
 #
