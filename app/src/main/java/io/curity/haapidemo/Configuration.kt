@@ -67,7 +67,7 @@ data class Configuration(
                 tokenEndpointPath = "/oauth/v2/oauth-token",
                 authorizationEndpointPath = "/oauth/v2/oauth-authorize",
                 userInfoEndpointPath = "/oauth/v2/oauth-userinfo",
-                redirectURI = "app://haapi",
+                redirectURI = "haapi://",
                 scope = listOf("openid", "profile"),
                 useSSL = false,
 
