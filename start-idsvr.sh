@@ -46,25 +46,9 @@ git checkout feature/sdk_update
 cd ..
 
 #
-# Set working options for the HAAPI Android App
+# Override the HAAPI default configuration settings
 #
-export ANDROID_PACKAGE_NAME='io.curity.haapidemo'
-export ANDROID_SIGNATURE_DIGEST='Z2DKEZO2XWFWQnApoRCzhqhIxzODe7BUsArj4Up9oKQ='
-export ANDROID_FINGERPRINT='67:60:CA:11:93:B6:5D:61:56:42:70:29:A1:10:B3:86:A8:48:C7:33:83:7B:B0:54:B0:0A:E3:E1:4A:7D:A0:A4'
-export ANDROID_CALLBACK_URI='haapi://callback'
-
-#
-# You can also test the iOS app using this deployment of the Curity Identity Server.
-# To get working passkeys logins, override these settings with a team ID that you own and your own unique bundle ID.
-# - https://github.com/curityio/ios-haapi-ui-sdk-demo
-#
-export IOS_CALLBACK_URI='haapi://callback'
-if [ "$APPLE_TEAM_ID" == '' ]; then
-  export APPLE_TEAM_ID='MYTEAMID'
-fi
-if [ "$APPLE_BUNDLE_ID" == '' ]; then
-  export APPLE_BUNDLE_ID='io.curity.haapidemo'
-fi
+cp config/docker-template.xml deployment/haapi/example-config-template.xml
 
 #
 # Run an automated deployment of the Curity Identity Server

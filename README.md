@@ -41,7 +41,7 @@ export IDSVR_HOST_NAME="$(ipconfig getifaddr en0)"
 ### 2. View Security Configuration
 
 The [Mobile Deployments](https://github.com/curityio/mobile-deployments) repository explains further information about the deployed backend infrastructure.\
-You can view the [HAAPI Configuration](https://github.com/curityio/mobile-deployments/blob/main/haapi/example-config-template.xml) to understand the settings to apply to deployed environments.
+You can view the [HAAPI Configuration](config/docker-template.xml) to understand the settings to apply to deployed environments.
 
 ### 3. Test Basic Logins
 

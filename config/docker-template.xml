@@ -1,0 +1,109 @@
+<!--
+  ~ Copyright (C) 2020 Curity AB. All rights reserved.
+  ~
+  ~ The contents of this file are the property of Curity AB.
+  ~ You may not copy or use this file, in either source code
+  ~ or executable form, except in compliance with terms
+  ~ set by Curity AB.
+  ~
+  ~ For further information, please contact Curity AB.
+  -->
+
+<data xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf">
+    <environments xmlns="https://curity.se/ns/conf/base">
+        <environment>
+            <base-url>$RUNTIME_BASE_URL</base-url>
+            <services>
+                <zones>
+                    <default-zone>
+                        <mobile-app-association>
+                            <android-app-configuration>
+                                <namespace>android_app</namespace>
+                                <package-name>io.curity.haapidemo</package-name>
+                                <sha256-cert-fingerprints>
+                                    <fingerprint>67:60:CA:11:93:B6:5D:61:56:42:70:29:A1:10:B3:86:A8:48:C7:33:83:7B:B0:54:B0:0A:E3:E1:4A:7D:A0:A4</fingerprint>
+                                </sha256-cert-fingerprints>
+                            </android-app-configuration>
+                        </mobile-app-association>
+                    </default-zone>
+                </zones>
+            </services>
+        </environment>
+    </environments>
+    <profiles xmlns="https://curity.se/ns/conf/base">
+        <profile>
+            <id>authentication-service</id>
+            <type xmlns:auth="https://curity.se/ns/conf/profile/authentication">auth:authentication-service</type>
+            <settings>
+                <authentication-service xmlns="https://curity.se/ns/conf/profile/authentication">
+                    <authenticators>
+                        <authenticator>
+                            <id>Passkeys</id>
+                            <required-authenticator-for-registration>HtmlForm</required-authenticator-for-registration>
+                            <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
+                              <enable-discoverable-credentials>false</enable-discoverable-credentials>
+                              <account-manager>
+                                <id>default-account-manager</id>
+                              </account-manager>
+                            </passkeys>
+                        </authenticator>
+                    </authenticators>
+                </authentication-service>
+            </settings>
+        </profile>
+        <profile>
+            <id>token-service</id>
+            <type xmlns:as="https://curity.se/ns/conf/profile/oauth">as:oauth-service</type>
+            <expose-detailed-error-messages/>
+            <settings>
+                <authorization-server xmlns="https://curity.se/ns/conf/profile/oauth">
+                    <client-store>
+                        <config-backed>
+                            <client>
+                                <id>haapi-android-client</id>
+                                <client-name>Haapi Android Client</client-name>
+                                <no-authentication>true</no-authentication>
+                                <redirect-uris>haapi://callback</redirect-uris>
+                                <audience>haapi-client</audience>
+                                <scope>address</scope>
+                                <scope>email</scope>
+                                <scope>openid</scope>
+                                <scope>phone</scope>
+                                <scope>profile</scope>
+                                <user-authentication>
+                                    <allowed-authenticators>HtmlForm</allowed-authenticators>
+                                    <allowed-authenticators>Passkeys</allowed-authenticators>
+                                </user-authentication>
+                                <capabilities>
+                                    <code/>
+                                    <haapi>
+                                        <issue-token-bound-authorization-code>true</issue-token-bound-authorization-code>
+                                    </haapi>
+                                </capabilities>
+                                <attestation>
+                                    <android>
+                                        <package-name>io.curity.haapidemo</package-name>
+                                        <signature-digest>Z2DKEZO2XWFWQnApoRCzhqhIxzODe7BUsArj4Up9oKQ=</signature-digest>
+                                        <android-policy>android-dev-policy</android-policy>
+                                    </android>
+                                </attestation>
+                            </client>
+                        </config-backed>
+                    </client-store>
+                </authorization-server>
+            </settings>
+        </profile>
+    </profiles>
+    <facilities xmlns="https://curity.se/ns/conf/base">
+        <client-attestation>
+            <android-policy xmlns="https://curity.se/ns/conf/client-attestation">
+                <id>android-dev-policy</id>
+                <verify-boot-state>false</verify-boot-state>
+                <minimum-security-level>software</minimum-security-level>
+                <override-certificate-chain-validation>
+                    <do-not-validate-certificate-chain/>
+                </override-certificate-chain-validation>
+            </android-policy>
+        </client-attestation>
+    </facilities>
+</data>

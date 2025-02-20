@@ -72,9 +72,9 @@ data class Configuration(
                 useSSL = false,
 
                 // Uncomment these fields to add support for HAAPI DCR fallback with a simple credential
-//                dcrTemplateClientId = "haapi-template-client",
-//                dcrClientRegistrationEndpointPath = "/token-service/oauth-registration",
-//                deviceSecret = "Password1"
+                // dcrTemplateClientId = "haapi-template-client",
+                // dcrClientRegistrationEndpointPath = "/token-service/oauth-registration",
+                // deviceSecret = "Password1"
             )
     }
 }
