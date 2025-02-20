@@ -3,7 +3,7 @@
 [![Quality](https://img.shields.io/badge/quality-test-yellow)](https://curity.io/resources/code-examples/status/)
 [![Availability](https://img.shields.io/badge/availability-source-blue)](https://curity.io/resources/code-examples/status/)
 
-This is an example Android app that uses the Curity Identity Server's Hypermedia API to perform an OIDC flow.\
+An example Android app that uses the Curity Identity Server's Hypermedia API to perform an OIDC flow.\
 Authentication uses native screens without the need for an external browser.
 
 ## Getting Started
@@ -20,7 +20,7 @@ Ensure that the local computer has these prerequisites:
 - The `jq` tool, e.g with `brew install jq`.
 
 First copy a `license.json` file for the Curity Identity Server into the root folder.\
-Then run a Docker deployment and indicate how connected simulators or devices call the Curity Identity Server in Docker.
+Then run a Docker deployment and indicate how connected simulators or devices call the Curity Identity Server.
 
 For example, run the following commands to connect to a macOS computer using its IP address.\
 Or some older Android emulators might require `IDSVR_HOST_NAME` to use the special value `10.0.2.2`.
@@ -82,7 +82,7 @@ See the following tutorials for additional developer information:
 - The [ngrok tutorials](https://curity.io/resources/learn/mobile-setup-ngrok/) explain how to use an internet URL and [view HAAPI messages](https://curity.io/resources/learn/expose-local-curity-ngrok/#ngrok-inspection-and-status).
 - The [Configure Native Passkeys for Mobile Logins](https://curity.io/resources/learn/mobile-logins-using-native-passkeys/) tutorial explains the technical setup when using passkeys.
 - The [HAAPI Mobile Guides](https://curity.io/resources/haapi-ui-sdk/) provide further details for HAAPI mobile developers.
-- The [Implementing HAAPI Attestation Fallback](https://curity.io/resources/learn/implementing-haapi-fallback/) explains some extra steps if you need to deal with non-compliant Android devices.
+- The [Implementing HAAPI Attestation Fallback](https://curity.io/resources/learn/implementing-haapi-fallback/) explains how to manage non-compliant Android devices.
 
 ## Further information
 
