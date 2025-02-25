@@ -5,6 +5,7 @@ import io.curity.haapidemo.utils.SharedPreferenceStorage
 import io.curity.haapidemo.utils.disableSslTrustVerification
 import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
 import se.curity.identityserver.haapi.android.driver.TokenBoundConfiguration
+import se.curity.identityserver.haapi.android.sdk.util.ExperimentalWebAuthnApi
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
 import java.net.HttpURLConnection
@@ -13,6 +14,7 @@ import java.net.URI
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
 
+    @OptIn(ExperimentalWebAuthnApi::class)
     private val haapiWidgetConfiguration = run {
 
         val baseUri = URI(configuration.baseURLString)
@@ -23,6 +25,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
             appRedirect = configuration.redirectURI,
         )
+            .setUseNativeWebAuthnSupport(true)
             .setTokenBoundConfiguration(createTokenBoundConfiguration())
             .setOauthAuthorizationParamsProvider {
                 WidgetConfiguration.OAuthAuthorizationParams(

@@ -70,20 +70,7 @@ android {
 }
 
 dependencies {
-    //
-    // TODO: Uncomment this line once the 4.4 SDK is released 
-    //
-    //implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.4.0")
-
-    //
-    // TODO: Delete these 6 lines once the 4.4 SDK is released 
-    //
-    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.driver/build/outputs/aar/identityserver.haapi.android.driver-debug.aar"))
-    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.sdk/build/outputs/aar/identityserver.haapi.android.sdk-debug.aar"))
-    implementation(files("/Users/gary.archer/dev/android-cat/identityserver.haapi.android.ui.widget/build/outputs/aar/identityserver.haapi.android.ui.widget-debug.aar"))
-    implementation("com.google.android.gms:play-services-fido:21.1.0")
-    implementation ("androidx.credentials:credentials:1.3.0")
-    implementation ("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.3.0")
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
