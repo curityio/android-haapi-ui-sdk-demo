@@ -55,6 +55,14 @@ export USE_NGROK='true'
 ./start-idsvr.sh
 ```
 
+## 5. Free Deployment Resources
+
+Once you have finished local testing, free all backend resources with the following command:
+
+```bash
+./stop-idsvr.sh
+```
+
 ## Application Code
 
 The following links point you to the most essential areas of the example app's source code.
