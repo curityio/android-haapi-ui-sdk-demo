@@ -47,15 +47,17 @@ Sign in to the deployed environment and use a pre-shipped test user account.
 ### 4. Test Native Passkey Logins
 
 Passkeys require hosting of assets documents at a trusted internet HTTPS URL.\
-You can use ngrok to host assets documents to enable the testing of passkeys logins.\
-The following example commands deploy the Curity Identity Server with a passkeys configuration:
+You can use ngrok to host assets documents to enable the testing of passkeys logins.
+
+The following example commands deploy the Curity Identity Server with a passkeys configuration.\
+See the tutorial link at the end of this README to learn more about the ngrok tool.
 
 ```bash
 export USE_NGROK='true'
 ./start-idsvr.sh
 ```
 
-## 5. Free Deployment Resources
+### 5. Free Deployment Resources
 
 Once you have finished local testing, free all backend resources with the following command:
 
