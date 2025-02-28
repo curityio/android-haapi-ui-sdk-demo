@@ -14,7 +14,7 @@ import java.net.URI
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
 
-        @OptIn(ExperimentalWebAuthnApi::class)
+    @OptIn(ExperimentalWebAuthnApi::class)
     private val haapiWidgetConfiguration = run {
 
         val baseUri = URI(configuration.baseURLString)
@@ -25,12 +25,12 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
             authorizationEndpointUri = baseUri.resolve(configuration.authorizationEndpointPath),
             appRedirect = configuration.redirectURI,
         )
-        .setUseNativeWebAuthnSupport(true)
-        .setTokenBoundConfiguration(createTokenBoundConfiguration())
-        .setOauthAuthorizationParamsProvider {
-            WidgetConfiguration.OAuthAuthorizationParams(
-                scope = configuration.scope
-            )
+            .setUseNativeWebAuthnSupport(true)
+            .setTokenBoundConfiguration(createTokenBoundConfiguration())
+            .setOauthAuthorizationParamsProvider {
+                WidgetConfiguration.OAuthAuthorizationParams(
+                    scope = configuration.scope
+                )
         }
 
         if (!configuration.useSSL) {
