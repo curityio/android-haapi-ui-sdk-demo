@@ -11,3 +11,4 @@ resources/
 local.properties
 deployment/
 /.gradle/
+build/*

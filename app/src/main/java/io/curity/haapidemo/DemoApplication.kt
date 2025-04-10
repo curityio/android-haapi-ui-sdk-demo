@@ -1,12 +1,16 @@
 package io.curity.haapidemo
 
 import android.app.Application
+import io.curity.haapidemo.extensibility.CustomDataMapper
 import io.curity.haapidemo.utils.SharedPreferenceStorage
 import io.curity.haapidemo.utils.disableSslTrustVerification
 import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
 import se.curity.identityserver.haapi.android.driver.TokenBoundConfiguration
+import se.curity.identityserver.haapi.android.ui.widget.FragmentResolver
+import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowFragmentResolver
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
+import se.curity.identityserver.haapi.android.ui.widget.models.DataMappersFactory
 import java.net.HttpURLConnection
 import java.net.URI
 
@@ -55,6 +59,25 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
 
     override val widgetConfiguration: WidgetConfiguration
         get() = haapiWidgetConfiguration
+
+    /*
+     * Create extensibility objects to override model data
+     */
+    override val dataMappersFactory: DataMappersFactory
+        get() = CustomDataMapper(
+            redirectTo = configuration.redirectURI,
+            autoPollingDuration = widgetConfiguration.autoPollingDuration,
+            useDefaultExternalBrowser = widgetConfiguration.useDefaultExternalBrowser
+        )
+
+    /*
+     * Create extensibility objects to override view logic
+     */
+    /*override val fragmentResolver: FragmentResolver =
+        HaapiFlowFragmentResolver.Builder()
+            // NewFormFragment is a subclass of FormFragment and uses the pattern `newInstance`
+            .customize(FormModel::class.java, NewFormFragment::newInstance)
+            .build()*/
 
     /*
      * This object is required in order to use the recommended options to protect OAuth token requests with DPoP JWTs
