@@ -2,12 +2,13 @@ package io.curity.haapidemo
 
 import android.app.Application
 import io.curity.haapidemo.extensibility.CustomDataMapper
+import io.curity.haapidemo.extensibility.CustomFragmentFactory
 import io.curity.haapidemo.utils.SharedPreferenceStorage
 import io.curity.haapidemo.utils.disableSslTrustVerification
 import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
 import se.curity.identityserver.haapi.android.driver.TokenBoundConfiguration
+import se.curity.identityserver.haapi.android.ui.widget.ExperimentalHaapiApi
 import se.curity.identityserver.haapi.android.ui.widget.FragmentResolver
-import se.curity.identityserver.haapi.android.ui.widget.HaapiFlowFragmentResolver
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
 import se.curity.identityserver.haapi.android.ui.widget.models.DataMappersFactory
@@ -16,6 +17,7 @@ import java.net.URI
 
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
+    val fragmentFactory = CustomFragmentFactory()
 
     private val haapiWidgetConfiguration = run {
 
@@ -63,6 +65,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
     /*
      * Create extensibility objects to override model data
      */
+    @OptIn(ExperimentalHaapiApi::class)
     override val dataMappersFactory: DataMappersFactory
         get() = CustomDataMapper(
             redirectTo = configuration.redirectURI,
@@ -73,11 +76,8 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
     /*
      * Create extensibility objects to override view logic
      */
-    /*override val fragmentResolver: FragmentResolver =
-        HaapiFlowFragmentResolver.Builder()
-            // NewFormFragment is a subclass of FormFragment and uses the pattern `newInstance`
-            .customize(FormModel::class.java, NewFormFragment::newInstance)
-            .build()*/
+    @OptIn(ExperimentalHaapiApi::class)
+    override val fragmentResolver: FragmentResolver = fragmentFactory
 
     /*
      * This object is required in order to use the recommended options to protect OAuth token requests with DPoP JWTs
