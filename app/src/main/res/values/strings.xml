@@ -44,6 +44,6 @@
     <string name="tools_default_button_text">A button text</string>
 
 <!--    Passkeys support -->
-    <string name="asset_statements" translatable="false">[{\"include\": \"https://0fa0-109-152-103-8.ngrok-free.app/.well-known/assetlinks.json\"}]</string>
+    <string name="asset_statements" translatable="false">[{\"include\": \"https://10.0.2.2:8443/.well-known/assetlinks.json\"}]</string>
 
 </resources>
