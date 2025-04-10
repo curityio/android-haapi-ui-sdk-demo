@@ -56,7 +56,7 @@ data class Configuration(
 
     init {
         HaapiLogger.enabled = true
-        HaapiLogger.isDebugEnabled = false
+        HaapiLogger.setLevel(HaapiLogger.LogLevel.INFO)
     }
 
     companion object {
