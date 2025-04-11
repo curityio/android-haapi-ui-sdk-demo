@@ -30,7 +30,7 @@ data class HtmlFormLoginModel(
 
             return HtmlFormLoginModel(
                 userMessage = "Enter your SecureBank credentials",
-                interactionItems = formModel.interactionItems.filter { it.key != "login" },
+                interactionItems = formModel.interactionItems.filter { !it.key.contains("Login") },
                 linkItems = formModel.linkItems.filter { !it.href.contains("forgot-account-id") },
                 messageItems = formModel.messageItems,
                 templateArea = formModel.templateArea,
