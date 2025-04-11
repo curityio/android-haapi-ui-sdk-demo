@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {
 
+                @Suppress("DEPRECATION")
                 val model = it.data?.getParcelableExtra(HaapiFlowActivity.className) as? OauthModel
                 if (model is OauthModel.Token) {
 

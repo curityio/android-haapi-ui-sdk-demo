@@ -23,13 +23,14 @@ data class HtmlFormLoginModel(
     companion object {
 
         /*
-         * Remove Forgot Username and add a custom header description
+         * Remove the Forgot Username link
+         * Also replace the Login title with some custom banner text
          */
         fun fromDefaultModel(formModel: FormModel): HtmlFormLoginModel {
 
             return HtmlFormLoginModel(
                 userMessage = "Enter your SecureBank credentials",
-                interactionItems = formModel.interactionItems,
+                interactionItems = formModel.interactionItems.filter { it.key != "login" },
                 linkItems = formModel.linkItems.filter { !it.href.contains("forgot-account-id") },
                 messageItems = formModel.messageItems,
                 templateArea = formModel.templateArea,

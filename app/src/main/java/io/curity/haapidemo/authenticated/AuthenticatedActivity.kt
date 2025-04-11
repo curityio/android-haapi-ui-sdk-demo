@@ -31,6 +31,8 @@ class AuthenticatedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_authenticated)
 
         val userInfoURIString = intent.getStringExtra(EXTRA_AUTHENTICATED_ACTIVITY_USERINFO_URI_STRING)
+
+        @Suppress("DEPRECATION")
         val tokenResponse = intent.getParcelableExtra<OauthModel.Token>(
             EXTRA_AUTHENTICATED_ACTIVITY_TOKEN_RESPONSE
         )
