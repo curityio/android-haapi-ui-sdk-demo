@@ -3,17 +3,19 @@ package io.curity.haapidemo.extensibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.curity.haapidemo.R
-import se.curity.identityserver.haapi.android.ui.widget.models.SelectorItem
+import se.curity.identityserver.haapi.android.ui.widget.models.SelectorItemModel
 
 /*
- * Standard Android recycler view handling
+ * Android recycler view logic to manage a collection of view models
  */
-class AuthenticationSelectionArrayAdapter(private val itemList: List<SelectorItem>)
-    : RecyclerView.Adapter<AuthenticationSelectionArrayAdapter.ModelViewHolder>() {
+class AuthenticationSelectionArrayAdapter(
+    private val itemList: List<AuthenticationSelectionItemViewModel>,
+    private val onSelect: (model: SelectorItemModel) -> Unit)
+        : RecyclerView.Adapter<AuthenticationSelectionArrayAdapter.ModelViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,9 +27,10 @@ class AuthenticationSelectionArrayAdapter(private val itemList: List<SelectorIte
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
-
-        println("GJA: Binding text: ${itemList[position].title}")
-        holder.itemText.setText(itemList[position].title)
+        val viewModel = itemList[position]
+        holder.itemText.setText(viewModel.getDescriptiveText())
+        holder.itemButton.setText(viewModel.getButtonText())
+        holder.itemButton.tag = viewModel
     }
 
     override fun getItemCount(): Int {
@@ -36,12 +39,18 @@ class AuthenticationSelectionArrayAdapter(private val itemList: List<SelectorIte
 
     inner class ModelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var constraintLayout: ConstraintLayout
-        var itemText: TextView
+        val itemText: TextView
+        val itemButton: Button
 
         init {
-            constraintLayout = itemView.findViewById(R.id.authentication_selection_item_constraint_layout) as ConstraintLayout
-            itemText = itemView.findViewById(R.id.authentication_selection_item_text) as TextView
+            itemText = itemView.findViewById(R.id.authentication_selection_item_text)
+            itemButton = itemView.findViewById(R.id.authentication_selection_item_button)
+
+            // When an item is selected, call back the fragment
+            itemButton.setOnClickListener({
+                val viewModel = it.tag as AuthenticationSelectionItemViewModel
+                onSelect(viewModel.selectorItem)
+            })
         }
     }
 }

@@ -53,9 +53,9 @@ class CustomFragmentFactory : FragmentResolver {
      */
     private fun createSelectorFragment(model: SelectorModel): HaapiFlowFragment<SelectorModel> {
 
-        /*if (model.viewName == "views/select-authenticator/index") {
+        if (model.viewName == "views/select-authenticator/index") {
             return AuthenticationSelectionFragment.newInstance(model)
-        }*/
+        }
 
         return SelectorFragment.newInstance(model)
     }

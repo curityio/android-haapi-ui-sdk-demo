@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import io.curity.haapidemo.R
 import se.curity.identityserver.haapi.android.ui.widget.layouts.HaapiFlowFragment
-import se.curity.identityserver.haapi.android.ui.widget.models.InteractionAction
+import se.curity.identityserver.haapi.android.ui.widget.models.SelectorItemModel
 import se.curity.identityserver.haapi.android.ui.widget.models.SelectorModel
 import se.curity.identityserver.haapi.android.ui.widget.models.UIModel
 
@@ -31,24 +31,25 @@ class AuthenticationSelectionFragment: HaapiFlowFragment<SelectorModel>(R.layout
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println("GJA: Setting adapter for the recycler view")
         val formModel = extractUIModelFromArguments<SelectorModel>()
+        val selectorItems = formModel.selectorItems.map { it as SelectorItemModel }
+
+        // Sort selector items so that passkeys is shown first
+        val sortedItems = selectorItems.sortedWith { first, second ->
+            when {
+                first.type == "passkeys" -> -1
+                second.type == "passkeys" -> 1
+                else -> first.title.compareTo(second.title)
+            }
+        }
+
+        // Set up the authentication selection items for a recycler view
         val recyclerView = view.findViewById(R.id.selector_items_recycler_view) as? RecyclerView
-        recyclerView?.adapter = AuthenticationSelectionArrayAdapter(formModel.selectorItems)
-        println("GJA: Adapter set OK")
+        val viewModels = sortedItems.map { AuthenticationSelectionItemViewModel(it) }
 
-        /*formModel.selectorItems.forEach( {
-            println("GJA: got selector item: ${it.title}")
-        })*/
-    }
-
-    /*
-     * The custom view must submit the correct authentication selection to the server
-     */
-    override fun preSubmit(
-        interactionAction: InteractionAction,
-        keysValues: Map<String, Any>,
-        block: (Boolean, Map<String, Any>) -> Unit
-    ) {
+        // Populate the recycler view and handle select events to send the selection to the server
+        recyclerView?.adapter = AuthenticationSelectionArrayAdapter(viewModels, {
+            select(it)
+        })
     }
 }
