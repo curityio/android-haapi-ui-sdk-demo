@@ -34,12 +34,13 @@ class HtmlFormLoginFragment : FormFragment(layoutId = R.layout.haapi_html_login_
     }
 
     /*
-     * Do any custom validation before submitting the login data to the Curity Identity Server
+     * Override and do any custom validation before submitting the login data to the Curity Identity Server
      */
     override fun preSubmit(
         interactionAction: InteractionAction,
         keysValues: Map<String, Any>,
         block: (Boolean, Map<String, Any>) -> Unit
     ) {
+        super.preSubmit(interactionAction, keysValues, block)
     }
 }
