@@ -25,8 +25,8 @@ class AuthenticationSelectionFragment: HaapiFlowFragment<SelectorModel>(R.layout
     }
 
     /*
-     * Render a header followed by authentication selection items
-     * Each item is a heading and a button
+     * Render a header followed by authentication selector items
+     * Each authentication selector item is a description and a button
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

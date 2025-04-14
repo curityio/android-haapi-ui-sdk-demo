@@ -11,7 +11,7 @@ import se.curity.identityserver.haapi.android.ui.widget.models.LinkItemModel
  */
 @Parcelize
 data class HtmlFormLoginModel(
-    val userMessage: String,
+    val bannerData: String,
     override val interactionItems: List<InteractionItem>,
     override val linkItems: List<LinkItemModel>,
     override val messageItems: List<InfoMessageModel>,
@@ -29,7 +29,7 @@ data class HtmlFormLoginModel(
         fun fromDefaultModel(formModel: FormModel): HtmlFormLoginModel {
 
             return HtmlFormLoginModel(
-                userMessage = "Enter your SecureBank credentials",
+                bannerData = "Enter your SecureBank credentials",
                 interactionItems = formModel.interactionItems.filter { !it.key.contains("Login") },
                 linkItems = formModel.linkItems.filter { !it.href.contains("forgot-account-id") },
                 messageItems = formModel.messageItems,
