@@ -27,7 +27,7 @@ import se.curity.identityserver.haapi.android.ui.widget.models.LinkItemModel
  */
 @Parcelize
 data class HtmlFormLoginModel(
-    val bannerData: String,
+    val extraData: String,
     override val interactionItems: List<InteractionItem>,
     override val linkItems: List<LinkItemModel>,
     override val messageItems: List<InfoMessageModel>,
@@ -42,10 +42,10 @@ data class HtmlFormLoginModel(
          * Remove the Forgot Username link
          * Also replace the Login title with some custom banner text
          */
-        fun fromDefaultModel(formModel: FormModel): HtmlFormLoginModel {
+        fun create(formModel: FormModel): HtmlFormLoginModel {
 
             return HtmlFormLoginModel(
-                bannerData = "Enter your SecureBank credentials",
+                extraData = "Enter your SecureBank credentials",
                 interactionItems = formModel.interactionItems.filter { !it.key.contains("Login") },
                 linkItems = formModel.linkItems.filter { !it.href.contains("forgot-account-id") },
                 messageItems = formModel.messageItems,

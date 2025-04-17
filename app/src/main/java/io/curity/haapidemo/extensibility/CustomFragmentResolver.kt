@@ -27,10 +27,10 @@ import se.curity.identityserver.haapi.android.ui.widget.models.SelectorModel
 import se.curity.identityserver.haapi.android.ui.widget.models.UIModel
 
 /*
- * Create custom fragments for particular login screens
+ * The entry point for customizing view logic
  */
 @OptIn(ExperimentalHaapiApi::class)
-class CustomFragmentFactory : FragmentResolver {
+class CustomFragmentResolver : FragmentResolver {
 
     private val defaultResolver = HaapiFlowFragmentResolver.Builder().build()
 

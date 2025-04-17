@@ -45,7 +45,7 @@ class HtmlFormLoginFragment : FormFragment(layoutId = R.layout.haapi_html_login_
 
         if (uiModel is HtmlFormLoginModel) {
             val bannerView = view.findViewById<TextView>(R.id.banner_text)
-            bannerView.text = uiModel.bannerData
+            bannerView.text = uiModel.extraData
         }
     }
 

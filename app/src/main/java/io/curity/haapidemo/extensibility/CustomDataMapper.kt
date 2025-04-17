@@ -23,7 +23,7 @@ import se.curity.identityserver.haapi.android.ui.widget.models.UIModel
 import java.time.Duration
 
 /*
- * This custom data mapper overrides model data from HAAPI responses for particular screens
+ * The entry point for customizing UI models
  */
 @OptIn(ExperimentalHaapiApi::class)
 class CustomDataMapper(
@@ -37,7 +37,7 @@ class CustomDataMapper(
             val defaultModel = super.mapHaapiResponseToModel(it)
             val formModel = defaultModel as? FormModel
             if (formModel?.viewName == "authenticator/html-form/authenticate/get") {
-                HtmlFormLoginModel.fromDefaultModel(formModel)
+                HtmlFormLoginModel.create(formModel)
             } else {
                 defaultModel
             }

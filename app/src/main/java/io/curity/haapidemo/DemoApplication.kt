@@ -18,7 +18,7 @@ package io.curity.haapidemo
 
 import android.app.Application
 import io.curity.haapidemo.extensibility.CustomDataMapper
-import io.curity.haapidemo.extensibility.CustomFragmentFactory
+import io.curity.haapidemo.extensibility.CustomFragmentResolver
 import io.curity.haapidemo.utils.SharedPreferenceStorage
 import io.curity.haapidemo.utils.disableSslTrustVerification
 import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
@@ -33,7 +33,7 @@ import java.net.URI
 
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
-    val fragmentFactory = CustomFragmentFactory()
+    val customFragmentResolver = CustomFragmentResolver()
 
     private val haapiWidgetConfiguration = run {
 
@@ -93,7 +93,7 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
      * Create extensibility objects to override view logic
      */
     @OptIn(ExperimentalHaapiApi::class)
-    override val fragmentResolver: FragmentResolver = fragmentFactory
+    override val fragmentResolver: FragmentResolver = customFragmentResolver
 
     /*
      * This object is required in order to use the recommended options to protect OAuth token requests with DPoP JWTs
