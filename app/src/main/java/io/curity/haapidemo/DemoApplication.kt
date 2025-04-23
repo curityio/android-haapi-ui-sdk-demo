@@ -1,17 +1,39 @@
+/*
+ *  Copyright (C) 2023 Curity AB
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package io.curity.haapidemo
 
 import android.app.Application
+import io.curity.haapidemo.extensibility.CustomDataMapper
+import io.curity.haapidemo.extensibility.CustomFragmentResolver
 import io.curity.haapidemo.utils.SharedPreferenceStorage
 import io.curity.haapidemo.utils.disableSslTrustVerification
 import se.curity.identityserver.haapi.android.driver.KeyPairAlgorithmConfig
 import se.curity.identityserver.haapi.android.driver.TokenBoundConfiguration
+import se.curity.identityserver.haapi.android.ui.widget.ExperimentalHaapiApi
+import se.curity.identityserver.haapi.android.ui.widget.FragmentResolver
 import se.curity.identityserver.haapi.android.ui.widget.HaapiUIWidgetApplication
 import se.curity.identityserver.haapi.android.ui.widget.WidgetConfiguration
+import se.curity.identityserver.haapi.android.ui.widget.models.DataMappersFactory
 import java.net.HttpURLConnection
 import java.net.URI
 
 class DemoApplication: Application(), HaapiUIWidgetApplication {
     val configuration = Configuration.newInstance()
+    val customFragmentResolver = CustomFragmentResolver()
 
     private val haapiWidgetConfiguration = run {
 
@@ -55,6 +77,23 @@ class DemoApplication: Application(), HaapiUIWidgetApplication {
 
     override val widgetConfiguration: WidgetConfiguration
         get() = haapiWidgetConfiguration
+
+    /*
+     * Create extensibility objects to override model data
+     */
+    @OptIn(ExperimentalHaapiApi::class)
+    override val dataMappersFactory: DataMappersFactory
+        get() = CustomDataMapper(
+            redirectTo = configuration.redirectURI,
+            autoPollingDuration = widgetConfiguration.autoPollingDuration,
+            useDefaultExternalBrowser = widgetConfiguration.useDefaultExternalBrowser
+        )
+
+    /*
+     * Create extensibility objects to override view logic
+     */
+    @OptIn(ExperimentalHaapiApi::class)
+    override val fragmentResolver: FragmentResolver = customFragmentResolver
 
     /*
      * This object is required in order to use the recommended options to protect OAuth token requests with DPoP JWTs

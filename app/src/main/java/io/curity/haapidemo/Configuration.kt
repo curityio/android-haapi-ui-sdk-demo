@@ -54,10 +54,13 @@ data class Configuration(
 
     val userInfoURI = baseURLString + userInfoEndpointPath
 
+    /*
+    // Uncomment to troubleshoot errors
     init {
-        HaapiLogger.enabled = true
-        HaapiLogger.setLevel(HaapiLogger.LogLevel.INFO)
-    }
+        // HaapiLogger.enabled = true
+        // HaapiLogger.setLevel(HaapiLogger.LogLevel.DEBUG)
+        // HaapiLogger.isSensitiveValueMasked = false
+    }*/
 
     companion object {
         fun newInstance(): Configuration =

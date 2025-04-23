@@ -49,6 +49,8 @@ class TokensFragment: Fragment() {
     private lateinit var binding: FragmentTokensBinding
 
     private val tokensViewModel: TokensViewModel by activityViewModels {
+
+        @Suppress("DEPRECATION")
         TokensViewModelFactory(
             requireActivity().application,
             requireArguments().getString(EXTRA_USERINFO_URI_STRING) ?: throw IllegalStateException("Expecting a configuration"),
