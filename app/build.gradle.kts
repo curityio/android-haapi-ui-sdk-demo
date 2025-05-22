@@ -71,7 +71,7 @@ android {
 }
 
 dependencies {
-    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.4.0")
+    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.5.0")
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
