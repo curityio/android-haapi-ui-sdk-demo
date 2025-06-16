@@ -84,7 +84,7 @@
                                     <android>
                                         <package-name>io.curity.haapidemo</package-name>
                                         <signature-digest>Z2DKEZO2XWFWQnApoRCzhqhIxzODe7BUsArj4Up9oKQ=</signature-digest>
-                                        <android-policy>android-dev-policy</android-policy>
+                                        <android-policy>android-policy</android-policy>
                                     </android>
                                 </attestation>
                             </client>
@@ -97,7 +97,7 @@
     <facilities xmlns="https://curity.se/ns/conf/base">
         <client-attestation>
             <android-policy xmlns="https://curity.se/ns/conf/client-attestation">
-                <id>android-dev-policy</id>
+                <id>android-policy</id>
                 <verify-boot-state>false</verify-boot-state>
                 <minimum-security-level>software</minimum-security-level>
                 <override-certificate-chain-validation>
