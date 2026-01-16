@@ -16,14 +16,17 @@
 
 package io.curity.haapidemo.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Parcel
 import androidx.core.content.edit
 import se.curity.identityserver.haapi.android.driver.Storage
 
 /*
  * A utility store for temporary DPoP related data when getting OAuth tokens from the token endpoint
  */
+@SuppressLint("ParcelCreator")
 class SharedPreferenceStorage(
     private val context: Context,
     private val name: String = "tokenBoundKeyStorage"
@@ -58,5 +61,10 @@ class SharedPreferenceStorage(
             name,
             Context.MODE_PRIVATE
         )
+    }
+
+    override fun describeContents(): Int  = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
     }
 }

@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             if (it.resultCode == Activity.RESULT_OK) {
 
                 @Suppress("DEPRECATION")
-                val model = it.data?.getParcelableExtra(HaapiFlowActivity.className) as? OauthModel
+                val model = it.data?.getParcelableExtra<OauthModel>(HaapiFlowActivity.className)
                 if (model is OauthModel.Token) {
 
                     val userInfoURI = (application as DemoApplication).configuration.userInfoURI
