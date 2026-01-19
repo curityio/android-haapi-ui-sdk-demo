@@ -19,7 +19,10 @@ package io.curity.haapidemo.authenticated
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import io.curity.haapidemo.R
 import se.curity.identityserver.haapi.android.ui.widget.models.OauthModel
@@ -27,8 +30,16 @@ import se.curity.identityserver.haapi.android.ui.widget.models.OauthModel
 class AuthenticatedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_authenticated)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.authenticatorLayout)) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         val userInfoURIString = intent.getStringExtra(EXTRA_AUTHENTICATED_ACTIVITY_USERINFO_URI_STRING)
 
