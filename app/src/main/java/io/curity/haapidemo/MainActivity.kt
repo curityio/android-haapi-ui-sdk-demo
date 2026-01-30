@@ -20,9 +20,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import io.curity.haapidemo.authenticated.AuthenticatedActivity
 import io.curity.haapidemo.databinding.ActivityMainBinding
@@ -34,16 +37,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainLayout)) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         haapiFlowLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             binding.button.setLoading(false)
             if (it.resultCode == Activity.RESULT_OK) {
 
                 @Suppress("DEPRECATION")
-                val model = it.data?.getParcelableExtra(HaapiFlowActivity.className) as? OauthModel
+                val model = it.data?.getParcelableExtra<OauthModel>(HaapiFlowActivity.className)
                 if (model is OauthModel.Token) {
 
                     val userInfoURI = (application as DemoApplication).configuration.userInfoURI

@@ -22,13 +22,13 @@ plugins {
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = "io.curity.haapidemo"
 
     defaultConfig {
         applicationId = "io.curity.haapidemo"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
@@ -60,8 +60,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
     }
 
     buildFeatures {
@@ -71,17 +73,15 @@ android {
 }
 
 dependencies {
-    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:4.5.0")
-
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:5.1.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
-    implementation("androidx.datastore:datastore-preferences:1.1.4")
-
-    implementation("org.bitbucket.b_c:jose4j:0.9.5")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.google.android.material:material:1.13.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.6")
+    implementation("androidx.datastore:datastore-preferences:1.2.0")
+    implementation("org.bitbucket.b_c:jose4j:0.9.6")
+    implementation("com.squareup.okhttp3:okhttp:5.3.2")
 }
