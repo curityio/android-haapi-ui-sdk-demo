@@ -14,33 +14,26 @@
       See the License for the specific language governing permissions and
       limitations under the License.
     -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <import type="kotlin.Pair" />
-        <variable type="Pair&lt;String,String>" name="data" />
-    </data>
-    <LinearLayout
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:tools="http://schemas.android.com/tools">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.Code14"
+        tools:text="Label"/>
 
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.Code14"
-            android:text="@{data.first}"
-            tools:text="Label"/>
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.Code14"
+        tools:text="Value"/>
 
-        <TextView
-            android:id="@+id/value"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.Code14"
-            android:text="@{data.second}"
-            tools:text="Value"/>
-
-    </LinearLayout>
-</layout>
+</LinearLayout>
