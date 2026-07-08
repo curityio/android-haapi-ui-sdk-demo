@@ -157,6 +157,7 @@ class TokensFragment: Fragment() {
         }
 
         fun refreshView(result: OauthModel.Token) {
+            tokenResponse = result
             updateDisclosureContents()
             fetchUserInfo()
             _tokenResponse.postValue(result)
