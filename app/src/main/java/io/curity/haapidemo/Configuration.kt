@@ -66,7 +66,7 @@ data class Configuration(
         fun newInstance(): Configuration =
             Configuration(
                 clientId = "haapi-android-client",
-                baseURLString = "https://10.0.2.2:8443",
+                baseURLString = "https://192.168.1.100:8443",
                 tokenEndpointPath = "/oauth/v2/oauth-token",
                 authorizationEndpointPath = "/oauth/v2/oauth-authorize",
                 userInfoEndpointPath = "/oauth/v2/oauth-userinfo",
