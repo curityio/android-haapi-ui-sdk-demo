@@ -12,3 +12,4 @@ local.properties
 deployment/
 /.gradle/
 build/*
+gradle-daemon-jvm.properties
