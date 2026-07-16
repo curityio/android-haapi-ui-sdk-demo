@@ -21,9 +21,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
-import io.curity.haapidemo.BR
 import io.curity.haapidemo.authenticated.models.KeyValueViewModel
 import io.curity.haapidemo.databinding.DecodedTokenViewBinding
 import io.curity.haapidemo.databinding.KeyValueViewBinding
@@ -47,28 +44,30 @@ class DecodedTokenView @JvmOverloads constructor(
         binding = DecodedTokenViewBinding.inflate(LayoutInflater.from(context), viewGroupParent, true)
 
         label?.let {
-            binding.headerLabel = context.getString(label)
+            binding.header.text = context.getString(label)
         }
 
         contents?.let {
-            binding.entries = contents.keys().asSequence().map { key ->
+            val entries = contents.keys().asSequence().map { key ->
                 KeyValueViewModel(
                     key,
                     contents[key].toString(),
                     contents[key] is String)
             }.toList()
+            setEntries(binding.verticalLinearLayout, entries)
         }
     }
 }
 
-@BindingAdapter(value = ["entries", "layout"])
-fun setEntries(viewGroup: ViewGroup, entries: List<KeyValueViewModel>?, layoutId: Int) {
+fun setEntries(viewGroup: ViewGroup, entries: List<KeyValueViewModel>?) {
     viewGroup.removeAllViews()
     if (entries != null) {
         val inflater = LayoutInflater.from(viewGroup.context)
         entries.forEach { entry ->
-            val binding: KeyValueViewBinding = DataBindingUtil.inflate(inflater, layoutId, viewGroup, true)
-            binding.setVariable(BR.model, entry)
+            val binding = KeyValueViewBinding.inflate(inflater, viewGroup, true)
+            binding.key.text = entry.key
+            binding.value.text = entry.value
+            binding.value.setTextAppearance(entry.valueStyle)
         }
     }
 }

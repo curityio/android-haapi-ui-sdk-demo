@@ -16,19 +16,17 @@
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "io.curity.haapidemo"
 
     defaultConfig {
         applicationId = "io.curity.haapidemo"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
     }
@@ -73,15 +71,15 @@ android {
 }
 
 dependencies {
-    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:5.1.0")
+    implementation("se.curity.identityserver:identityserver.haapi.android.ui.widget:5.5.1")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("com.google.android.material:material:1.13.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.6")
-    implementation("androidx.datastore:datastore-preferences:1.2.0")
+    implementation("com.google.android.material:material:1.14.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.8")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.8")
+    implementation("androidx.datastore:datastore-preferences:1.2.1")
     implementation("org.bitbucket.b_c:jose4j:0.9.6")
-    implementation("com.squareup.okhttp3:okhttp:5.3.2")
+    implementation("com.squareup.okhttp3:okhttp:5.4.0")
 }

@@ -22,7 +22,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@drawable/primary_progress_btn_shape"
         android:foreground="?attr/selectableItemBackground"
         android:minHeight="@dimen/minHeightButton">

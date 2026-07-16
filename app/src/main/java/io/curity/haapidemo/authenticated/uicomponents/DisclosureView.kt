@@ -20,11 +20,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
-import io.curity.haapidemo.BR
 import io.curity.haapidemo.R
 import io.curity.haapidemo.authenticated.models.DecodedJwtData
 import io.curity.haapidemo.authenticated.utils.CopyHandler
@@ -38,10 +36,16 @@ class DisclosureView @JvmOverloads constructor(
 ): ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding: DisclosureViewBinding
+    private var copyHandler: CopyHandler
 
     init {
         binding = DisclosureViewBinding.inflate(LayoutInflater.from(context), rootView as ViewGroup, true)
-        binding.copyHandler = CopyHandler(binding.contentText.text)
+        copyHandler = CopyHandler(binding.contentText.text)
+        binding.root.setOnClickListener { binding.toggleButton.isChecked = !binding.toggleButton.isChecked }
+        binding.toggleButton.setOnCheckedChangeListener { _, isChecked ->
+            binding.collapseLinearLayout.visibility = if (isChecked) View.VISIBLE else View.GONE
+        }
+        binding.copyClipboard.setOnClickListener { copyHandler.copyToClipboard(it) }
 
         setTitle(attrs)
     }
@@ -56,7 +60,7 @@ class DisclosureView @JvmOverloads constructor(
 
     fun setContentText(contentText: CharSequence) {
         binding.contentText.text = contentText
-        binding.copyHandler?.textToCopy = contentText
+        copyHandler.textToCopy = contentText
     }
 
     @Suppress("Unused")
@@ -75,18 +79,18 @@ class DisclosureView @JvmOverloads constructor(
     @Suppress("Unused")
     fun setDisclosureContents(contents: List<DisclosureContent>) {
         binding.verticalLinearLayout.removeAllViews()
-        binding.entries = contents.map { Pair(it.label, it.description) }
+        setLabelTextEntries(binding.verticalLinearLayout, contents.map { Pair(it.label, it.description) })
     }
 }
 
-@BindingAdapter("entries")
 fun setLabelTextEntries(viewGroup: ViewGroup, entries: List<Pair<CharSequence, CharSequence>>?) {
     if (entries != null) {
         viewGroup.removeAllViews()
         val inflater = LayoutInflater.from(viewGroup.context)
         entries.forEach { entry ->
-            val binding: LabelTextViewBinding = DataBindingUtil.inflate(inflater, R.layout.label_text_view, viewGroup, true)
-            binding.setVariable(BR.data, entry)
+            val binding = LabelTextViewBinding.inflate(inflater, viewGroup, true)
+            binding.label.text = entry.first
+            binding.value.text = entry.second
         }
     }
 }

@@ -14,58 +14,40 @@
       See the License for the specific language governing permissions and
       limitations under the License.
     -->
-<layout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-    <data>
-        <import type="kotlin.Pair" />
-        <import type="java.util.List" />
-        <import type="io.curity.haapidemo.authenticated.models.KeyValueViewModel" />
-        <variable
-            name="entries"
-            type="List&lt;KeyValueViewModel>" />
-        <variable
-            name="header_label"
-            type="String" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/spacing">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Label"
+        android:textAppearance="@style/TextAppearance.BodyMedium"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:text="@string/decoded_jwt_open_brace"/>
+
     <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/vertical_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/spacing">
+        >
 
-        <TextView
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Label"
-            android:text="@{header_label}"
-            android:textAppearance="@style/TextAppearance.BodyMedium"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text"
-            android:text="@string/decoded_jwt_open_brace"/>
-
-        <LinearLayout
-            android:id="@+id/vertical_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:entries="@{entries}"
-            app:layout="@{@layout/key_value_view}"
-            >
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text"
-            android:text="@string/decoded_jwt_close_brace"/>
     </LinearLayout>
-</layout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:text="@string/decoded_jwt_close_brace"/>
+</LinearLayout>

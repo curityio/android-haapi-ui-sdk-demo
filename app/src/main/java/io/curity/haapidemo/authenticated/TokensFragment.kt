@@ -69,9 +69,6 @@ class TokensFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTokensBinding.inflate(layoutInflater)
-        binding.model = tokensViewModel
-        binding.lifecycleOwner = this
-
         return binding.root
     }
 
@@ -83,8 +80,12 @@ class TokensFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.refreshButton.setOnClickListener { tokensViewModel.refreshToken(it) }
+        binding.signoutButton.setOnClickListener { tokensViewModel.logout(it) }
+
         tokensViewModel.liveUserInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
+                binding.userinfoContainer.visibility = View.VISIBLE
                 DecodedTokenView(requireContext(), R.string.user_info, JSONObject(it), binding.userinfoLayout)
             }
         })
@@ -102,6 +103,10 @@ class TokensFragment: Fragment() {
         tokensViewModel.liveTokenResponse.observe(viewLifecycleOwner, Observer {
             binding.accessDisclosureView.setContentText(tokensViewModel.accessToken)
             binding.accessDisclosureView.setDisclosureContents(tokensViewModel.disclosureContents)
+
+            binding.linearLayoutIdToken.visibility = if (tokensViewModel.idToken != null) View.VISIBLE else View.GONE
+            binding.refreshDisclosureView.visibility = if (tokensViewModel.refreshToken != null) View.VISIBLE else View.GONE
+            binding.refreshButton.isEnabled = tokensViewModel.refreshToken != null
 
             val idToken = tokensViewModel.idToken
             if (idToken != null) {
